@@ -67,5 +67,32 @@ button:hover {
     to {
         transform: scale(1);
         opacity: 1;
+    body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top, #1a1a1a, #000);
+    z-index: -2;
+}
+
+.heart {
+    position: fixed;
+    color: #ff4da6;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 1;
     }
 }
