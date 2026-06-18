@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bizim Sürpriz Günümüz 💖</title>
+<title>Sürpriz Gün 💖</title>
 
 <style>
 body {
@@ -11,10 +11,8 @@ body {
     font-family: "Segoe UI", Arial;
     background: radial-gradient(circle at top, #2a0000, #0a0a0a);
     color: white;
-    overflow-x: hidden;
 }
 
-/* SAYFALAR */
 .page {
     display: none;
     min-height: 100vh;
@@ -24,7 +22,6 @@ body {
     display: block;
 }
 
-/* CENTER */
 .center {
     height: 100vh;
     display: flex;
@@ -34,23 +31,18 @@ body {
     text-align: center;
 }
 
-/* TITLE */
 h1 {
     color: #ff2e63;
     text-shadow: 0 0 20px rgba(255,46,99,0.6);
 }
 
-/* INPUT */
-input[type="date"] {
+input {
     padding: 12px;
     border-radius: 12px;
     border: none;
-    outline: none;
     margin: 10px;
-    font-size: 16px;
 }
 
-/* BUTTON */
 button {
     background: linear-gradient(135deg, #ff2e63, #ff4d6d);
     border: none;
@@ -58,66 +50,30 @@ button {
     color: white;
     border-radius: 14px;
     cursor: pointer;
-    font-size: 16px;
-    box-shadow: 0 0 25px rgba(255,46,99,0.3);
     transition: 0.3s;
 }
 
 button:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
-/* RESULT CARD */
 .card {
-    max-width: 900px;
-    margin: auto;
-    margin-top: 40px;
+    max-width: 700px;
+    margin: 40px auto;
     padding: 20px;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,46,99,0.3);
     border-radius: 16px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-/* LIST */
-ul {
-    list-style: none;
-    padding: 0;
 }
 
 li {
-    padding: 12px;
+    list-style: none;
+    padding: 14px;
     margin: 10px 0;
     background: rgba(255,46,99,0.08);
     border-left: 4px solid #ff2e63;
     border-radius: 10px;
-    transition: 0.3s;
-}
-
-li:hover {
-    transform: translateX(6px);
-}
-
-/* HIDDEN STATE */
-.hidden {
-    display: none;
-}
-
-/* HEARTS */
-.heart {
-    position: fixed;
-    top: -10px;
-    color: #ff2e63;
-    animation: fall linear;
-    font-size: 18px;
-    opacity: 0.7;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh) rotate(360deg);
-    }
 }
 
 </style>
@@ -128,107 +84,97 @@ li:hover {
 <!-- HOME -->
 <div id="home" class="page active">
     <div class="center">
-        <h1>💖 Sürpriz Gün Planlayıcı 💖</h1>
-
-        <p>Tarih seç, sürpriz gününü gör 💞</p>
+        <h1>💖 Sürpriz Gün 💖</h1>
+        <p>Bir tarih seç, sadece 2 özel an gelsin</p>
 
         <input type="date" id="date">
-
-        <button onclick="generate()">Sürprizi Aç</button>
+        <button onclick="generate()">Sürprizi Gör</button>
     </div>
 </div>
 
 <!-- RESULT -->
 <div id="result" class="page">
-
     <div class="card">
 
-        <h1>💖 Senin Günün Hazır 💖</h1>
+        <h1>💖 Senin 2 Özel Anın</h1>
+        <p id="dateText"></p>
 
-        <p id="selectedDate"></p>
+        <ul id="list"></ul>
 
-        <ul id="activities">
-        </ul>
-
-        <div style="text-align:center; margin-top:20px;">
+        <div style="text-align:center;">
             <button onclick="back()">Geri</button>
         </div>
 
     </div>
-
 </div>
 
 <script>
 
-/* ÖRNEK AKTİVİTE HAVUZU (300’e genişletilebilir) */
-const pool = [
-"12:00 buluşma & sarılma",
-"Kahve içmek",
-"El ele yürümek",
-"Sahil gezisi",
-"Fotoğraf çekmek",
-"Dondurma yemek",
-"Gün batımı izlemek",
-"Birlikte müzik dinlemek",
-"Piknik yapmak",
-"Gece yürüyüşü",
-"Birbirine hayal anlatmak",
-"Komik hikaye paylaşmak",
-"Yıldızlara bakmak",
-"Telefonları bırakmak",
-"Birlikte dans etmek",
-"Yeni yer keşfetmek",
-"Sessizce sarılmak",
-"Birlikte kahkaha atmak",
-"Sevdiği şeyi hediye etmek",
-"Günü bitirip sarılmak"
+/* AKTİVİTE HAVUZU */
+const activities = [
+"El ele sahilde gün batımı yürüyüşü",
+"Kahve içip uzun sohbet etmek",
+"Piknik yapıp birlikte müzik dinlemek",
+"Şehirde kaybolarak keşif yapmak",
+"Fotoğraf çekip anı biriktirmek",
+"Dondurma alıp parkta oturmak",
+"Yıldızlara bakarak hayal kurmak",
+"Birlikte yemek yapmaya çalışmak",
+"Sessizce sarılıp oturmak",
+"Gece yürüyüşüne çıkmak"
 ];
 
-/* SAYFA GEÇİŞ */
-function generate() {
+/* BASİT SEED (TARİHE GÖRE SABİT SEÇİM) */
+function seedFromDate(str){
+    let sum = 0;
+    for(let i=0;i<str.length;i++){
+        sum += str.charCodeAt(i);
+    }
+    return sum;
+}
+
+function generate(){
 
     const date = document.getElementById("date").value;
 
     if(!date){
-        alert("Bir tarih seç 💞");
+        alert("Bir tarih seç 💖");
         return;
     }
 
     document.getElementById("home").classList.remove("active");
     document.getElementById("result").classList.add("active");
 
-    document.getElementById("selectedDate").innerText =
-        "📅 Seçilen Gün: " + date;
+    document.getElementById("dateText").innerText = "📅 " + date;
 
-    const list = document.getElementById("activities");
+    const list = document.getElementById("list");
     list.innerHTML = "";
 
-    /* RANDOM 10 AKTİVİTE */
-    let shuffled = pool.sort(() => 0.5 - Math.random());
+    let seed = seedFromDate(date);
 
-    for(let i=0;i<10;i++){
-        let li = document.createElement("li");
-        li.innerText = shuffled[i];
-        list.appendChild(li);
+    // deterministic 2 seçim
+    let first = activities[seed % activities.length];
+    let second = activities[(seed * 7) % activities.length];
+
+    // aynı çıkarsa değiştir
+    if(first === second){
+        second = activities[(seed + 3) % activities.length];
     }
+
+    let li1 = document.createElement("li");
+    li1.innerText = "💖 " + first;
+
+    let li2 = document.createElement("li");
+    li2.innerText = "💖 " + second;
+
+    list.appendChild(li1);
+    list.appendChild(li2);
 }
 
 function back(){
     document.getElementById("result").classList.remove("active");
     document.getElementById("home").classList.add("active");
 }
-
-/* KALP ANİMASYONU */
-function heart() {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "❤";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDuration = (Math.random() * 3 + 3) + "s";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-}
-setInterval(heart,200);
 
 </script>
 
