@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Password Overlay (Site giriş) -->
+    <!-- Site şifre -->
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-box">
             <h2>💖 Aşk Rotası</h2>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <!-- Gizli Mektup Overlay -->
+    <!-- Gizli mektup -->
     <div class="letter-overlay" id="letterOverlay">
         <div class="letter-box">
             <span class="close-letter" id="closeLetterBtn">&times;</span>
@@ -29,14 +29,14 @@
             <div class="error-msg" id="letterError"></div>
             <div class="letter-content" id="letterContent" style="display:none;">
                 <p>Sevgilim Mercan,</p>
-                <p>Her gün seninle geçen her an için şükrediyorum. Gözlerin en karanlık gecelerimde bile yolumu aydınlatan bir yıldız gibi. Sesin, kalbimin en güzel melodisi.</p>
-                <p>Seni dünyalar kadar seviyorum. Bu siteyi senin için yaptım çünkü aşkımızı her satıra, her piksele işlemek istedim. İyi ki hayatımdasın, iyi ki benimlesin.</p>
-                <p>Sonsuza kadar seninle,<br><strong>Mertcan</strong></p>
+                <p>Seninle her anım bir ömre bedel. Gözlerin karanlık gecelerimin yıldızı, sesin kalbimin en güzel melodisi. Bu siteyi sana olan aşkımı her satıra kazımak için yaptım.</p>
+                <p>İyi ki benimlesin, iyi ki seni seviyorum. Sonsuza kadar seninle…</p>
+                <p><strong>Mertcan</strong></p>
             </div>
         </div>
     </div>
 
-    <!-- Gece Modu Yıldızları (arka plan) -->
+    <!-- Gece modu yıldızları -->
     <div class="stars-container" id="starsContainer"></div>
 
     <!-- Neon orbs -->
@@ -51,21 +51,20 @@
     <!-- Burst container -->
     <div class="burst-container" id="burstContainer"></div>
 
-    <!-- YouTube hidden iframe -->
+    <!-- YouTube gizli -->
     <div id="ytPlayerContainer" class="yt-hidden"></div>
 
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- Gece Modu Toggle (sabit) -->
+    <!-- Gece modu butonu -->
     <button class="night-mode-toggle" id="nightModeToggle" title="Gece Modu">🌙</button>
 
-    <!-- Main content -->
-    <div class="main-container" id="mainContent" style="display: none;">
-        
+    <!-- Ana içerik -->
+    <div class="main-container" id="mainContent" style="display:none;">
         <!-- Header -->
         <div class="glass-card" style="text-align:center;">
-            <div style="margin-bottom: 12px;">
+            <div style="margin-bottom:12px;">
                 <img src="biz.jpg" alt="Mertcan & Mercan" class="header-couple-photo">
             </div>
             <h1 class="header-title">💖 Aşk Rotası</h1>
@@ -75,73 +74,54 @@
             <button class="surprise-btn letter-btn" id="openLetterBtn" style="margin-top:8px; background:rgba(255,255,255,0.2); border:1px solid #ffb6c1; font-size:0.9rem;">💌 Gizli Mektup</button>
         </div>
 
-        <!-- Date Picker & Surprise -->
+        <!-- Tarih & sürpriz -->
         <div class="glass-card" style="text-align:center;">
             <div class="date-picker-row">
-                <input type="date" class="date-input" id="datePicker" title="Buluşma tarihini seç">
+                <input type="date" class="date-input" id="datePicker">
                 <button class="surprise-btn" id="surpriseBtn">✨ Sürpriz Yap! ✨</button>
             </div>
-            <small style="color:#ffb6c1;opacity:0.7;">Tarih seçip butona tıkla, 3 harika aktivite seni bekliyor!</small>
+            <small style="color:#ffb6c1;opacity:0.7;">Tarih seç, butona bas, 3 aktivite seni bekler!</small>
         </div>
 
-        <!-- Activity Cards -->
+        <!-- Aktivite kartları -->
         <div class="cards-row" id="cardsRow">
-            <div class="activity-card" id="card0">
-                <span class="mystery-text">❓</span>
-                <span class="mystery-label">Sürpriz için tıkla</span>
-                <div class="card-shimmer"></div>
-            </div>
-            <div class="activity-card" id="card1">
-                <span class="mystery-text">❓</span>
-                <span class="mystery-label">Sürpriz için tıkla</span>
-                <div class="card-shimmer"></div>
-            </div>
-            <div class="activity-card" id="card2">
-                <span class="mystery-text">❓</span>
-                <span class="mystery-label">Sürpriz için tıkla</span>
-                <div class="card-shimmer"></div>
-            </div>
+            <div class="activity-card" id="card0"><span class="mystery-text">❓</span><span class="mystery-label">?</span><div class="card-shimmer"></div></div>
+            <div class="activity-card" id="card1"><span class="mystery-text">❓</span><span class="mystery-label">?</span><div class="card-shimmer"></div></div>
+            <div class="activity-card" id="card2"><span class="mystery-text">❓</span><span class="mystery-label">?</span><div class="card-shimmer"></div></div>
         </div>
 
-        <!-- Aşk Çarkı -->
+        <!-- Aşk çarkı -->
         <div class="glass-card" style="text-align:center;">
             <h3 class="section-title">🎡 Aşk Çarkı</h3>
-            <div class="wheel-container">
-                <canvas id="wheelCanvas" width="300" height="300"></canvas>
-                <button class="wheel-spin-btn" id="spinWheelBtn">🎲 Çevir!</button>
-            </div>
+            <div class="wheel-container"><canvas id="wheelCanvas" width="300" height="300"></canvas></div>
+            <button class="wheel-spin-btn" id="spinWheelBtn">🎲 Çevir!</button>
             <div class="wheel-result" id="wheelResult"></div>
         </div>
 
-        <!-- Fotoğraf Galerisi (Slider) -->
+        <!-- Fotoğraf slider + sürükle bırak -->
         <div class="glass-card" style="text-align:center;">
             <h3 class="section-title">📸 Bizim Anılar</h3>
             <div class="slider-container">
                 <button class="slider-btn prev-btn">◀</button>
                 <div class="slider">
                     <img src="biz.jpg" class="slider-img active" alt="Biz">
-                    <img src="biz2.jpg" class="slider-img" alt="Biz 2">
-                    <img src="biz3.jpg" class="slider-img" alt="Biz 3">
+                    <img src="biz2.jpg" class="slider-img" alt="Biz2">
+                    <img src="biz3.jpg" class="slider-img" alt="Biz3">
                 </div>
                 <button class="slider-btn next-btn">▶</button>
             </div>
-            <div class="slider-dots">
-                <span class="dot active-dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-            <!-- Sürükle-bırak -->
+            <div class="slider-dots"><span class="dot active-dot"></span><span class="dot"></span><span class="dot"></span></div>
             <div class="drop-zone" id="dropZone">
-                <p>📥 Fotoğraf sürükleyip buraya bırak</p>
+                <p>📥 Fotoğraf sürükle / buraya tıkla</p>
                 <input type="file" id="fileInput" accept="image/*" multiple hidden>
             </div>
             <div class="extra-photos" id="extraPhotos"></div>
         </div>
 
-        <!-- Daily Color -->
+        <!-- Günün rengi -->
         <div class="glass-card">
             <h3 class="section-title">🎨 Günün Rengi</h3>
-            <div class="color-display" id="dailyColorDisplay">
+            <div class="color-display">
                 <div class="color-swatch" id="colorSwatch"></div>
                 <div class="color-info">
                     <div class="color-name" id="colorName">-</div>
@@ -150,7 +130,7 @@
             </div>
         </div>
 
-        <!-- Daily Song & Player -->
+        <!-- Günün şarkısı -->
         <div class="glass-card">
             <h3 class="section-title">🎵 Günün Şarkısı</h3>
             <div class="song-display" id="songDisplay">
@@ -161,33 +141,32 @@
                 </div>
             </div>
             <div class="mini-player">
-                <button id="btnPlay" class="active-btn" title="Çal">▶️ Çal</button>
-                <button id="btnPause" title="Durdur">⏸️ Dur</button>
-                <button id="btnUnmute" title="Sesi Aç">🔇 Sesi Aç</button>
-                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30" title="Ses">
-                <button id="btnNextSong" title="Sonraki Şarkı">⏭️</button>
+                <button id="btnPlay" class="active-btn">▶️ Çal</button>
+                <button id="btnPause">⏸️ Dur</button>
+                <button id="btnUnmute">🔇 Sesi Aç</button>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
+                <button id="btnNextSong">⏭️</button>
             </div>
         </div>
 
-        <!-- Istanbul Routes -->
+        <!-- İstanbul rotaları -->
         <div class="glass-card">
             <h3 class="section-title">🗺️ İstanbul Rotaları</h3>
             <div id="routesContainer"></div>
         </div>
 
-        <!-- History -->
+        <!-- Geçmiş -->
         <div class="glass-card" style="text-align:center;">
             <h3 class="section-title-sm">📋 Son Aktiviteler</h3>
             <div id="historyContainer" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;"></div>
-            <button id="clearHistory">🗑️ Geçmişi Temizle</button>
+            <button id="clearHistory">🗑️ Temizle</button>
         </div>
 
-        <!-- Sürpriz Mesaj Butonu -->
-        <div style="text-align:center; margin: 20px 0;">
-            <button id="secretMessageBtn" style="background:none;border:none;font-size:2rem;cursor:pointer;transition:0.3s;" title="Sürpriz mesaj">💌</button>
+        <!-- Sürpriz mesaj -->
+        <div style="text-align:center;margin:20px 0;">
+            <button id="secretMessageBtn" style="background:none;border:none;font-size:2rem;cursor:pointer;">💌</button>
         </div>
 
-        <!-- Footer -->
         <div style="text-align:center;padding:10px;opacity:0.5;font-size:0.7rem;">
             💕 Aşk Rotası © 2026 · Mertcan & Mercan
         </div>
