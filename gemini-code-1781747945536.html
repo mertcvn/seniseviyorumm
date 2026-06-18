@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sizin Aşk Sayfanız</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fff0f3; color: #555; text-align: center; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        button { background: #ff4d6d; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; margin: 10px; font-weight: bold; }
+        #sonuc { margin: 20px 0; padding: 15px; border: 1px solid #ffccd5; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Aşk Planlayıcı</h1>
+    <input type="date" id="tarih">
+    <button onclick="surprizGetir()">Sürprizi Getir!</button>
+    <div id="sonuc">Burada sürprizin görünecek!</div>
+    <hr>
+    <button onclick="rotaGetir()">İstanbul Rota Önerisi</button>
+    <div id="rotaSonuc"></div>
+</div>
+
+<script>
+    // 300 Etkinlik (Örnek olarak başlangıç listesi)
+    const etkinlikHavuzu = {
+        eglenceli: ["Go-kart", "Bowling", "Evde oyun gecesi", "Mutfakta pizza yapımı", "Video oyunu turnuvası", "Dans dersi alın", "Sahilde uçurtma uçurun", /* ... buraya 93 tane daha ekle */],
+        romantik: ["Boğaz'da gün batımı", "Yıldızları izle", "Birlikte resim yapın", "Mum ışığında akşam yemeği", "Şiir okuma gecesi", "El ele yürüyüş", /* ... buraya 94 tane daha ekle */],
+        ani: ["Zaman kapsülü hazırla", "Fotoğraf albümü düzenle", "Birbirinize mektup yazın", "Eski videoları izleyin", "Anı defteri tutmaya başlayın", /* ... buraya 95 tane daha ekle */]
+    };
+
+    // 100 Rota (Örnek olarak başlangıç listesi)
+    const rotalar = [
+        "Galata ve Karaköy sokakları", "Moda sahilinde yürüyüş", "Emirgan Korusu kahvaltısı", "Kuzguncuk nostaljik turu", "Balat renkli evler turu", /* ... buraya 95 tane daha ekle */
+    ];
+
+    function surprizGetir() {
+        const e = etkinlikHavuzu.eglenceli[Math.floor(Math.random() * etkinlikHavuzu.eglenceli.length)];
+        const r = etkinlikHavuzu.romantik[Math.floor(Math.random() * etkinlikHavuzu.romantik.length)];
+        const a = etkinlikHavuzu.ani[Math.floor(Math.random() * etkinlikHavuzu.ani.length)];
+        document.getElementById("sonuc").innerHTML = `<b>Eğlence:</b> ${e}<br><b>Romantizm:</b> ${r}<br><b>Anı:</b> ${a}`;
+    }
+
+    function rotaGetir() {
+        const secilenRota = rotalar[Math.floor(Math.random() * rotalar.length)];
+        // Buraya Google Maps linki ekleyebilirsin
+        document.getElementById("rotaSonuc").innerHTML = `<b>Bugünkü Rotanız:</b> ${secilenRota} <br> <a href="https://www.google.com/maps/search/${secilenRota}" target="_blank">Haritada Gör</a>`;
+    }
+</script>
+</body>
+</html>
