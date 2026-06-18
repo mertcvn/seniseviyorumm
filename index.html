@@ -99,34 +99,40 @@
         </div>
 
         <!-- Fotoğraf slider + sürükle bırak -->
-        <div class="glass-card" style="text-align:center;">
-            <h3 class="section-title">📸 Bizim Anılar</h3>
-            <div class="slider-container">
-                <button class="slider-btn prev-btn">◀</button>
-                <div class="slider">
-                    <img src="biz.jpg" class="slider-img active" alt="Biz">
-                    <img src="biz2.jpg" class="slider-img" alt="Biz2">
-                    <img src="biz3.jpg" class="slider-img" alt="Biz3">
-                    <img src="biz4.jpg" class="slider-img" alt="Biz4">
-                    <img src="biz5.jpg" class="slider-img" alt="Biz5">
-                    <img src="biz6.jpg" class="slider-img" alt="Biz6">
-                </div>
-                <button class="slider-btn next-btn">▶</button>
-            </div>
-            <div class="slider-dots">
-    <span class="dot active-dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-</div>
-            <div class="drop-zone" id="dropZone">
-                <p>📥 Fotoğraf sürükle / buraya tıkla</p>
-                <input type="file" id="fileInput" accept="image/*" multiple hidden>
-            </div>
-            <div class="extra-photos" id="extraPhotos"></div>
+<div class="glass-card" style="text-align:center;">
+    <h3 class="section-title">📸 Bizim Anılar</h3>
+    
+    <!-- Slider -->
+    <div class="slider-container">
+        <button class="slider-btn prev-btn">◀</button>
+        <div class="slider">
+            <img src="biz.jpg" class="slider-img active" alt="Biz">
+            <img src="biz2.jpg" class="slider-img" alt="Biz2">
+            <img src="biz3.jpg" class="slider-img" alt="Biz3">
+            <img src="biz4.jpg" class="slider-img" alt="Biz4">
+            <img src="biz5.jpg" class="slider-img" alt="Biz5">
+            <img src="biz6.jpg" class="slider-img" alt="Biz6">
         </div>
+        <button class="slider-btn next-btn">▶</button>
+    </div>
+
+    <!-- Alt noktalar -->
+    <div class="slider-dots">
+        <span class="dot active-dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <!-- Sürükle / bırak alanı -->
+    <div class="drop-zone" id="dropZone">
+        <p>📥 Fotoğraf sürükle / buraya tıkla</p>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+    </div>
+    <div class="extra-photos" id="extraPhotos"></div>
+</div>
 
         <!-- Günün rengi -->
         <div class="glass-card">
