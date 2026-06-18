@@ -122,3 +122,36 @@ h.style.left = Math.random()*100 + "vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 },200);
+
+let player;
+
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+height: '0',
+width: '0',
+videoId: 'sy47Jf5gONo',
+playerVars: {
+'autoplay': 1,
+'mute': 1
+},
+events: {
+'onReady': onReady
+}
+});
+}
+
+function onReady(){
+player.playVideo();
+}
+
+// %50 ses
+function setHalfVolume(){
+if(player){
+player.unMute();
+player.setVolume(50); // 💖 istediğin %50 ses
+}
+}
+
+function startMusic(){
+player.playVideo();
+}
