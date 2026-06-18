@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>💖 Seni ÇOK Seviyorum</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle at top,#2a0000,#000);
+color:white;
+overflow:hidden;
+}
+
+/* LOGIN */
+#login{
+position:fixed;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:#000;
+z-index:9999;
+}
+
+input,button{
+padding:10px;
+margin-top:8px;
+border:none;
+border-radius:10px;
+}
+
+button{
+background:linear-gradient(135deg,#ff2e63,#ff7aa2);
+color:white;
+cursor:pointer;
+}
+
+/* APP */
+.container{
+display:flex;
+height:100vh;
+}
+
+.left{
+flex:2;
+padding:20px;
+}
+
+.right{
+flex:1;
+background:rgba(255,255,255,0.05);
+padding:15px;
+overflow-y:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+<h1>💖 LOVE ENGINE</h1>
+<input id="pass" type="password" placeholder="Şifre">
+<button onclick="login()">Giriş</button>
+<p id="err"></p>
+</div>
+
+<!-- APP -->
+<div id="app" class="container" style="display:none;">
+
+<!-- LEFT -->
+<div class="left">
+
+<h1>💖 Love Engine 300</h1>
+
+<input id="date" type="date">
+
+<button onclick="surprise()">💌 Sürpriz Gün</button>
+<button onclick="loveWord()">💖 Söz</button>
+
+<div id="out" class="card"></div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+
+<h2>📅 Anılar</h2>
+<div id="log"></div>
+
+<h2>🗺 Rota</h2>
+<div id="mapBox" class="card"></div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ================= LOGIN ================= */
+const PASSWORD = "love123";
+
+function login(){
+let p=document.getElementById("pass").value;
+if(p===PASSWORD){
+document.getElementById("login").style.display="none";
+document.getElementById("app").style.display="flex";
+}else{
+document.getElementById("err").innerText="❌ yanlış şifre";
+}
+}
+
+/* ================= 300 ETKİNLİK ================= */
+const activities = [
+"kahve içmek","sinema yapmak","piknik yapmak","yürüyüş yapmak","fotoğraf çekmek",
+"yıldız izlemek","mektup yazmak","film izlemek","alışveriş yapmak","yemek yapmak",
+"dans etmek","oyun oynamak","kahkaha atmak","gece yürüyüşü","gün batımı izlemek"
+];
+
+while(activities.length < 300){
+activities.push(activities[Math.floor(Math.random()*activities.length)]);
+}
+
+/* ================= 300 ROTA ================= */
+const places = [
+"Galata Kulesi","Kız Kulesi","Ortaköy","Moda Sahili","Bebek",
+"Emirgan","Balat","Karaköy","Taksim","Beşiktaş","Üsküdar",
+"Çamlıca","Kuzguncuk","Çengelköy","Şile","Ağva",
+"Beykoz Ormanı","Riva","Sultanahmet","Gülhane"
+];
+
+while(places.length < 300){
+places.push(places[Math.floor(Math.random()*places.length)]);
+}
+
+/* ================= 300 SÖZ ================= */
+const words = [
+"💖 Sen benim huzurumsun",
+"🌹 Kalbim sende",
+"✨ Birlikte her şey güzel",
+"💌 Biz sonsuzuz",
+"🌙 Gözlerin evim"
+];
+
+while(words.length < 300){
+words.push(words[Math.floor(Math.random()*words.length)]);
+}
+
+/* ================= DATA ================= */
+let data=[];
+
+/* ================= SURPRISE ================= */
+function surprise(){
+
+let date=document.getElementById("date").value;
+if(!date) return;
+
+/* 🎯 ETKİNLİK */
+let act = activities[Math.floor(Math.random()*activities.length)];
+
+/* 🗺 ROTA */
+let r1 = places[Math.floor(Math.random()*places.length)];
+let r2 = places[Math.floor(Math.random()*places.length)];
+let r3 = places[Math.floor(Math.random()*places.length)];
+
+data.push({date,act,r1,r2,r3});
+
+/* OUTPUT */
+document.getElementById("out").innerHTML=
+`
+💖 ${date}<br><br>
+🎯 Etkinlik:<br>${act}<br><br>
+🗺 Rota:<br>${r1} → ${r2} → ${r3}
+`;
+
+document.getElementById("mapBox").innerHTML=
+`${r1} → ${r2} → ${r3}`;
+
+render();
+}
+
+/* ================= LOVE WORD ================= */
+function loveWord(){
+let w = words[Math.floor(Math.random()*words.length)];
+document.getElementById("out").innerHTML = w;
+}
+
+/* ================= LOG ================= */
+function render(){
+let log=document.getElementById("log");
+log.innerHTML="";
+
+data.slice().reverse().forEach(i=>{
+log.innerHTML+=`
+<div class="card">
+📅 ${i.date}<br><br>
+🎯 ${i.act}<br><br>
+🗺 ${i.r1} → ${i.r2} → ${i.r3}
+</div>`;
+});
+}
+
+</script>
+
+</body>
+</html>
