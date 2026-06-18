@@ -1,95 +1,194 @@
-const tasks = [
-"Boğazda gün batımı yürüyüşü 🌅",
-"Kahve içip uzun sohbet ☕",
-"Birlikte yemek yapma 🍝",
-"Film gecesi 🎬",
-"El ele şehir turu 🚶‍♂️",
-"Piknik yapmak 🧺",
-"Fotoğraf çekmek 📸",
-"Yeni tatlı denemek 🍰",
-"Gece sahil yürüyüşü 🌙",
-"Playlist yapmak 🎧"
-];
 
-const messages = [
-"Bugün seni biraz daha fazla seviyorum 💖",
-"Sen benim en güzel tesadüfümsün ✨",
-"Birlikte her şey daha güzel 💕",
-"Kalbim hep seninle 🫶",
-"Bugün sadece sana ait 💌"
-];
-
-function openSurprise() {
-    const date = document.getElementById("date").value;
-
-    if(!date){
-        alert("Bir tarih seç 💖");
-        return;
-    }
-
-    const d = new Date(date);
-
-    const index = (d.getDate() + d.getMonth()) % tasks.length;
-    const msgIndex = Math.floor(Math.random() * messages.length);
-
-    const result = document.getElementById("result");
-
-    result.innerHTML = `
-        <div class="card">
-            <h2>💖 Bugünün Sürprizi</h2>
-            <p>${tasks[index]}</p>
-            <hr style="opacity:0.2">
-            <p style="opacity:0.8">${messages[msgIndex]}</p>
-        </div>
-    `;
+/* ================= RESET ================= */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-const places = [
-"Galata Kulesi","Galata Köprüsü","Karaköy sahil","Karaköy sokakları","Tersane İstanbul",
-"Moda sahil","Moda iskelesi","Moda parkı","Yoğurtçu Parkı","Kadıköy çarşı",
-"Bahariye Caddesi","Kadıköy iskele","Rıhtım yürüyüş yolu","Fenerbahçe parkı",
-"Caddebostan sahili","Caddebostan plajı","Suadiye sahili","Bostancı sahil",
-"Maltepe sahil parkı","Kartal sahil","Dragos tepesi","İdealtepe sahil",
-"Pendik sahil","Tuzla marina","Viaport marina","Aydos Ormanı","Aydos göleti",
-"Üsküdar sahil","Salacak","Kız Kulesi karşısı","Kuzguncuk sokakları",
-"Çengelköy sahili","Beylerbeyi sahil","Kuleli sahili","Çamlıca Tepesi",
-"Büyük Çamlıca Camii çevresi","Küçük Çamlıca tepesi","Validebağ Korusu",
-"Altunizade","Acıbadem sokakları","Kozyatağı park","Ataşehir finans merkezi",
-"Ümraniye teraslar","Sancaktepe orman yolu","Sultanbeyli gölet",
-"Beşiktaş sahil","Ortaköy meydanı","Ortaköy cami önü","Arnavutköy sahil",
-"Bebek sahili","Emirgan Korusu","Yıldız Parkı","Maçka Parkı","Dolmabahçe Sarayı",
-"Fındıklı sahil","Kabataş sahil","Taksim Meydanı","İstiklal Caddesi",
-"Cihangir sokakları","Harbiye","Nişantaşı","Abdi İpekçi Caddesi","Etiler",
-"Levent","Maslak","Zincirlikuyu","Gayrettepe","İstinye sahil","Tarabya sahil",
-"Sarıyer sahil","Rumeli Hisarı","Anadolu Hisarı","Beykoz sahil","Paşabahçe",
-"Kavacık","Polonezköy","Riva sahili","Poyrazköy","Anadolu Kavağı",
-"Yoros Kalesi","Garipçe köyü","Belgrad Ormanı","Zekeriyaköy orman yolu",
-"Florya sahili","Yeşilköy sahil","Bakırköy sahil","Ataköy marina",
-"Küçükçekmece gölü","Büyükçekmece sahili","Silivri sahili","Avcılar sahili",
-"Esenyurt gölet","Beylikdüzü sahil","Sefaköy park","Bahçelievler sokakları",
-"Bağcılar meydanı","Esenler park","Bayrampaşa","Gaziosmanpaşa",
-"Sultangazi","Eyüp Sultan","Pierre Loti tepesi","Balat renkli evler",
-"Fener Rum Patrikhanesi","Samatya sahili","Yedikule surları","Topkapı Sarayı",
-"Sultanahmet Meydanı","Ayasofya çevresi","Gülhane Parkı","Eminönü meydanı",
-"Sirkeci","Sirkeci sahil","Vapur iskeleleri","Eminönü balık ekmek",
-"Balat kafeler","Karaköy kafeleri","Moda kafeleri","Nişantaşı kafeleri",
-"Beyoğlu arka sokaklar","Galata arka sokaklar","Tünel","Kasımpaşa sahili",
-"Okmeydanı park","Şişli","Mecidiyeköy","Fulya","Okmeydanı",
-"Kağıthane deresi","Seyrantepe","Alibeyköy barajı","Alibeyköy park",
-"Vialand çevresi","Eyüp sahil yolu","Haliç sahil","Haliç köprüleri",
-"Unkapanı","Cibali","Fener sahil","Ayvansaray","Sütlüce sahili",
-"Miniatürk","Halıcıoğlu","Okmeydanı üst yollar","TEM seyir noktaları",
-"FSM köprüsü manzarası","15 Temmuz Köprüsü manzarası","Yavuz Sultan Selim Köprüsü",
-"Boğaz hattı","Vapur rotası","Adalar iskelesi","Büyükada",
-"Heybeliada","Burgazada","Kınalıada","Adalar bisiklet yolu",
-"Büyükada tepe yolu","Heybeliada orman yolu","Burgazada sahil",
-"Kınalıada kayalıklar","Adalar gün batımı","Adalar sabah rotası",
-"Boğaz turu","Lüks yat rotası","Sahil yürüyüş hattı","Sokak kafeleri",
-"Kitap kafeler","Sahil bankları","Manzara noktaları","Gizli bahçeler",
-"Çatı teraslar","Sky lounge noktaları","AVM terasları","Metro üst geçit manzaraları",
-"Vadi İstanbul","Zorlu Center çevresi","İstanbul Sapphire","Metrocity",
-"Kanyon AVM çevresi","Trump Towers çevresi","İstanbul Forum","Mall of Istanbul",
-"Ataköy 5. kısım sahili","Yenibosna","Florya Atatürk Ormanı","Atatürk Havalimanı çevresi",
-"Yeşilköy marina","Florya akvaryum çevresi","Bakırköy Botanik Park","Galleria çevresi",
-"Ataköy sahil park","Bostancı Gösteri Merkezi çevresi","Kadıköy sahil hattı"
-];
+/* ================= BACKGROUND ================= */
+body{
+font-family:'Montserrat',sans-serif;
+background:radial-gradient(circle at top,#2a0000,#000 60%);
+color:white;
+overflow:hidden;
+}
+
+/* animated glow background */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%, rgba(255,46,99,0.25), transparent 40%),
+radial-gradient(circle at 80% 30%, rgba(255,120,160,0.15), transparent 45%),
+radial-gradient(circle at 50% 80%, rgba(255,0,80,0.12), transparent 50%);
+animation:bgMove 10s infinite alternate ease-in-out;
+pointer-events:none;
+}
+
+@keyframes bgMove{
+0%{transform:scale(1) rotate(0deg);}
+100%{transform:scale(1.15) rotate(2deg);}
+}
+
+/* ================= LAYOUT ================= */
+.container{
+display:flex;
+height:100vh;
+}
+
+/* LEFT PANEL */
+.left{
+flex:2;
+padding:30px;
+}
+
+/* RIGHT PANEL */
+.right{
+flex:1;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border-left:1px solid rgba(255,255,255,0.1);
+padding:20px;
+overflow-y:auto;
+}
+
+/* ================= TITLE ================= */
+h1{
+font-family:'Playfair Display',serif;
+font-size:44px;
+color:#ff3b6b;
+text-shadow:0 0 25px #ff2e63, 0 0 40px #ff7aa2;
+animation: glow 3s infinite alternate;
+}
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 5px #ff2e63);}
+to{filter:drop-shadow(0 0 20px #ff7aa2);}
+}
+
+/* ================= INPUTS ================= */
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,0.08);
+color:white;
+outline:none;
+backdrop-filter:blur(10px);
+}
+
+/* ================= BUTTONS ================= */
+button{
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+background:linear-gradient(135deg,#ff2e63,#ff7aa2);
+color:white;
+box-shadow:0 0 20px #ff2e63;
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+button:hover{
+transform:scale(1.05);
+filter:brightness(1.2);
+}
+
+/* shine effect */
+button::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:rgba(255,255,255,0.25);
+transform:skewX(-20deg);
+transition:0.4s;
+}
+
+button:hover::after{
+left:120%;
+}
+
+/* ================= CARDS ================= */
+.card{
+background:rgba(255,255,255,0.06);
+padding:15px;
+margin-top:10px;
+border-radius:18px;
+backdrop-filter:blur(18px);
+box-shadow:0 0 25px rgba(255,0,100,0.2);
+transition:0.3s;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.card:hover{
+transform:translateY(-5px) scale(1.02);
+box-shadow:0 0 40px rgba(255,46,99,0.35);
+}
+
+/* ================= GLASS ================= */
+.glass{
+background:rgba(255,255,255,0.05);
+padding:18px;
+border-radius:20px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+margin-top:10px;
+}
+
+/* ================= HEARTS ================= */
+.heart{
+position:absolute;
+color:#ff2e63;
+animation:float 6s linear forwards;
+filter:drop-shadow(0 0 10px #ff2e63);
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);}
+100%{transform:translateY(-10vh) scale(1.5);}
+}
+
+/* ================= PHOTO ================= */
+#photo{
+width:100%;
+max-width:320px;
+border-radius:16px;
+margin-top:10px;
+box-shadow:0 0 30px #ff2e63;
+transition:0.3s;
+}
+
+#photo:hover{
+transform:scale(1.03);
+}
+
+/* ================= MUSIC ================= */
+.music{
+position:absolute;
+bottom:20px;
+left:20px;
+background:rgba(255,255,255,0.08);
+padding:10px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+}
+
+/* ================= SCROLL ================= */
+.right::-webkit-scrollbar{
+width:6px;
+}
+
+.right::-webkit-scrollbar-thumb{
+background:#ff2e63;
+border-radius:10px;
+}
