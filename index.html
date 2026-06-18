@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6b9d">
+    <title>💖 Aşk Dolu Aktiviteler | 300+ Fikir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Uçuşan Kalpler -->
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <!-- Konfeti -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Ana Site -->
+    <div class="main-container">
+        <div class="main-card">
+            <!-- Başlık -->
+            <div class="title-section">
+                <div class="title-decoration">
+                    <span class="deco-line"></span>
+                    <i class="fas fa-heart title-heart"></i>
+                    <span class="deco-line"></span>
+                </div>
+                <h1 class="title">Aşk Dolu Anlar</h1>
+                <p class="subtitle">300+ aktivite • romantik • eğlenceli • anı</p>
+            </div>
+
+            <!-- Geri Sayım -->
+            <div class="countdown-box" id="countdownBox">
+                <i class="fas fa-hourglass-half"></i>
+                <span id="countdownText">💕 Buluşma gününü seç, geri sayım başlasın!</span>
+            </div>
+
+            <!-- Günün Rengi & Şarkısı -->
+            <div class="daily-specials">
+                <div class="special-card color-card">
+                    <div class="color-preview" id="colorPreview"></div>
+                    <div class="special-info">
+                        <small>🎨 Günün Rengi</small>
+                        <strong id="colorName">Aşk Pembesi</strong>
+                        <span class="color-code" id="colorCode">#ff6b9d</span>
+                    </div>
+                </div>
+                <div class="special-card song-card">
+                    <div class="song-icon-wrapper">
+                        <i class="fas fa-music"></i>
+                        <div class="music-bars"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="special-info">
+                        <small>🎵 Günün Şarkısı</small>
+                        <strong id="songName">Perfect</strong>
+                        <span class="song-artist" id="songArtist">Ed Sheeran</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarih & Sürpriz -->
+            <div class="date-surprise-box">
+                <div class="date-picker">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="tarihInput">
+                </div>
+                <button class="surprise-btn" id="surpriseBtn">
+                    <i class="fas fa-gift"></i>
+                    <span>Sürpriz Yap</span>
+                    <i class="fas fa-magic"></i>
+                </button>
+            </div>
+
+            <!-- Aktiviteler -->
+            <div class="activities-section">
+                <div class="section-label">✨ Bugünün Aktiviteleri ✨</div>
+                <div class="activity-cards">
+                    <div class="activity-card empty" id="romantikCard">
+                        <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                        <span class="card-label">Romantik</span>
+                        <p class="card-text">Sürpriz için tıkla 💝</p>
+                        <div class="card-actions">
+                            <button class="btn-copy" title="Kopyala"><i class="fas fa-copy"></i></button>
+                            <button class="btn-fav" title="Favori"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="activity-card empty" id="eglenceliCard">
+                        <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                        <span class="card-label">Eğlenceli</span>
+                        <p class="card-text">Sürpriz için tıkla 🎉</p>
+                        <div class="card-actions">
+                            <button class="btn-copy" title="Kopyala"><i class="fas fa-copy"></i></button>
+                            <button class="btn-fav" title="Favori"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="activity-card empty" id="aniCard">
+                        <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                        <span class="card-label">Anı Biriktirme</span>
+                        <p class="card-text">Sürpriz için tıkla 📸</p>
+                        <div class="card-actions">
+                            <button class="btn-copy" title="Kopyala"><i class="fas fa-copy"></i></button>
+                            <button class="btn-fav" title="Favori"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-counter" id="activityCounter">
+                    <i class="fas fa-star"></i> <span>Toplam <strong>0</strong> aktivite keşfedildi</span>
+                </div>
+            </div>
+
+            <!-- Favoriler -->
+            <div class="favorites-section" id="favoritesSection" style="display:none;">
+                <div class="section-label">❤️ Favori Aktivitelerin</div>
+                <div class="favorites-list" id="favoritesList"></div>
+            </div>
+
+            <!-- İstanbul Rotaları -->
+            <div class="routes-section">
+                <div class="section-label">
+                    <i class="fas fa-map-pin"></i> İstanbul Rotaları
+                    <span class="route-badge">Tıkla → Harita</span>
+                </div>
+                <div class="routes-container" id="routesContainer">
+                    <a href="#" class="route-link placeholder">📍 Rota için sürpriz yap</a>
+                </div>
+            </div>
+
+            <!-- Müzik Çalar -->
+            <div class="music-section">
+                <div class="music-header">
+                    <i class="fab fa-youtube"></i>
+                    <span>Romantik Müzik</span>
+                    <span class="playing-indicator"></span>
+                </div>
+                <iframe id="youtubePlayer" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastText">Kopyalandı!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
