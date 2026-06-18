@@ -46,7 +46,7 @@
     }
 
     // ── AŞK SAYACI ─────────────────────
-    const askBaslangic = new Date(2026, 4, 24);
+    const askBaslangic = new Date(2026, 4, 24); // 24 Mayıs 2026
     const daySpan = document.getElementById('dayCount');
     function gunSayisi() {
       const bugun = new Date();
@@ -114,7 +114,7 @@
       }, 4100);
     });
 
-    // ── AKTİVİTE LİSTELERİ ────────────
+    // ── AKTİVİTE LİSTELERİ (100'er adet) ─
     const romantic = [
       "Mum ışığında evde akşam yemeği","Birlikte gün batımı izleyin","El ele yıldızları seyredin",
       "Birbirinize aşk mektupları yazın","Ortak çalma listesi oluşturun","Sıcak çikolata eşliğinde balkonda sohbet",
@@ -333,7 +333,7 @@
       { name:'🛍️ Nişantaşı & Teşvikiye', stops:[ {name:'Abdi İpekçi Caddesi', query:'Abdi+İpekçi+Caddesi+İstanbul'}, {name:'Teşvikiye Camii', query:'Teşvikiye+Camii+İstanbul'}, {name:'Maçka Parkı', query:'Maçka+Parkı+İstanbul'}, {name:'City\'s AVM', query:'Citys+Nişantaşı+İstanbul'} ] },
       { name:'🌿 Belgrad Ormanı', stops:[ {name:'Belgrad Ormanı', query:'Belgrad+Ormanı+İstanbul'}, {name:'Neşet Suyu', query:'Neşet+Suyu+Belgrad+Ormanı'}, {name:'Bentler', query:'Bentler+Belgrad+Ormanı'}, {name:'Atatürk Arboretumu', query:'Atatürk+Arboretumu+İstanbul'} ] },
       { name:'🏖️ Şile & Ağva', stops:[ {name:'Şile Plajı', query:'Şile+Plajı+İstanbul'}, {name:'Şile Feneri', query:'Şile+Feneri'}, {name:'Ağva', query:'Ağva+İstanbul'}, {name:'Kurfallı Plajı', query:'Kurfallı+Plajı+Şile'} ] },
-      { name:'⛪ Balat & Fener', stops:[ {name:'Balat Renkli Evler', query:'Balat+Evleri+İstanbul'}, {name:'Fener Rum Lisesi', query:'Fener+Rum+Lisesi+İstanbul'}, {name:'Sveti Stefan Kilisesi', query:'Demir+Kilise+İstanbul'}, {name:'Cibali', query:'Cibali+İstanbul'} ] },
+      { name:'⛪ Balat & Fener', stops:[ {name:'Balat Evleri', query:'Balat+Evleri+İstanbul'}, {name:'Fener Rum Lisesi', query:'Fener+Rum+Lisesi+İstanbul'}, {name:'Sveti Stefan Kilisesi', query:'Demir+Kilise+İstanbul'}, {name:'Cibali', query:'Cibali+İstanbul'} ] },
       { name:'☕ Eyüp & Pierre Loti', stops:[ {name:'Eyüp Sultan Camii', query:'Eyüp+Sultan+Camii+İstanbul'}, {name:'Pierre Loti Tepesi', query:'Pierre+Loti+Tepesi+İstanbul'}, {name:'Feshane', query:'Feshane+Eyüp+İstanbul'}, {name:'Miniatürk', query:'Miniatürk+İstanbul'} ] },
       { name:'🦅 Anadolu Kavağı', stops:[ {name:'Anadolu Kavağı', query:'Anadolu+Kavağı+İstanbul'}, {name:'Yoros Kalesi', query:'Yoros+Kalesi+İstanbul'}, {name:'Kavak Plajı', query:'Kavak+Plajı+Anadolu+Kavağı'}, {name:'Balık Restoranları', query:'Anadolu+Kavağı+Balık+Restoran'} ] },
       { name:'🏘️ Heybeliada', stops:[ {name:'Heybeliada İskelesi', query:'Heybeliada+İskelesi+İstanbul'}, {name:'Ruhban Okulu', query:'Heybeliada+Ruhban+Okulu'}, {name:'Değirmenburnu', query:'Değirmenburnu+Heybeliada'}, {name:'Çam Limanı', query:'Çam+Limanı+Heybeliada'} ] },
@@ -367,7 +367,40 @@
       { name:'⛪ Burgazada', stops:[ {name:'Burgazada İskelesi', query:'Burgazada+İskelesi+İstanbul'}, {name:'Sait Faik Müzesi', query:'Sait+Faik+Müzesi+Burgazada'}, {name:'Kalpazankaya', query:'Kalpazankaya+Burgazada'}, {name:'Burgazada Plajı', query:'Burgazada+Plajı'} ] },
       { name:'🏛️ Sultanahmet Akşam', stops:[ {name:'Sultanahmet Camii', query:'Sultanahmet+Camii+İstanbul'}, {name:'Dikilitaş', query:'Dikilitaş+Sultanahmet'}, {name:'Alman Çeşmesi', query:'Alman+Çeşmesi+Sultanahmet'}, {name:'Arasta Bazaar', query:'Arasta+Bazaar+İstanbul'} ] },
       { name:'🌙 Galata Kulesi Gece', stops:[ {name:'Galata Kulesi', query:'Galata+Kulesi+İstanbul'}, {name:'Serdar-ı Ekrem Caddesi', query:'Serdarı+Ekrem+Caddesi+İstanbul'}, {name:'Galata Köprüsü', query:'Galata+Köprüsü+İstanbul'}, {name:'Karaköy', query:'Karaköy+İstanbul'} ] },
-      { name:'☕ Bağdat Caddesi', stops:[ {name:'Caddebostan', query:'Caddebostan+İstanbul'}, {name:'Suadiye', query:'Suadiye+İstanbul'}, {name:'Erenköy', query:'Erenköy+İstanbul'}, {name:'Göztepe Parkı', query:'Göztepe+Parkı+İstanbul'} ] }
+      { name:'☕ Bağdat Caddesi', stops:[ {name:'Caddebostan', query:'Caddebostan+İstanbul'}, {name:'Suadiye', query:'Suadiye+İstanbul'}, {name:'Erenköy', query:'Erenköy+İstanbul'}, {name:'Göztepe Parkı', query:'Göztepe+Parkı+İstanbul'} ] },
+      { name:'🏙️ Maslak & Levent', stops:[ {name:'Kanyon AVM', query:'Kanyon+AVM+İstanbul'}, {name:'Metrocity', query:'Metrocity+İstanbul'}, {name:'Maslak', query:'Maslak+İstanbul'}, {name:'İstinye Park', query:'İstinye+Park+AVM'} ] },
+      { name:'🎭 AKM & Taksim', stops:[ {name:'Atatürk Kültür Merkezi', query:'Atatürk+Kültür+Merkezi+İstanbul'}, {name:'Taksim Meydanı', query:'Taksim+Meydanı+İstanbul'}, {name:'İstiklal Caddesi', query:'İstiklal+Caddesi+İstanbul'}, {name:'Gezi Parkı', query:'Gezi+Parkı+İstanbul'} ] },
+      { name:'🌃 İstinye & Tarabya', stops:[ {name:'İstinye Park', query:'İstinye+Park+AVM'}, {name:'İstinye Sahili', query:'İstinye+Sahili+İstanbul'}, {name:'Tarabya', query:'Tarabya+İstanbul'}, {name:'Yeniköy', query:'Yeniköy+İstanbul'} ] },
+      { name:'🛳️ Kabataş İskelesi', stops:[ {name:'Kabataş İskelesi', query:'Kabataş+İskelesi+İstanbul'}, {name:'Dolmabahçe Sarayı', query:'Dolmabahçe+Sarayı+İstanbul'}, {name:'Beşiktaş İskelesi', query:'Beşiktaş+İskelesi+İstanbul'}, {name:'Maçka Parkı', query:'Maçka+Parkı+İstanbul'} ] },
+      { name:'🍗 Kız Kulesi', stops:[ {name:'Kız Kulesi', query:'Kız+Kulesi+İstanbul'}, {name:'Üsküdar İskelesi', query:'Üsküdar+İskelesi+İstanbul'}, {name:'Salacak', query:'Salacak+Üsküdar'}, {name:'Üsküdar Sahili', query:'Üsküdar+Sahili+İstanbul'} ] },
+      { name:'🎣 Rumeli Feneri', stops:[ {name:'Rumeli Feneri', query:'Rumeli+Feneri+İstanbul'}, {name:'Garipçe', query:'Garipçe+İstanbul'}, {name:'Poyrazköy', query:'Poyrazköy+İstanbul'}, {name:'Kumköy', query:'Kumköy+İstanbul'} ] },
+      { name:'🏖️ Kilyos Plajları', stops:[ {name:'Solar Beach', query:'Solar+Beach+Kilyos'}, {name:'Uzunya', query:'Uzunya+Kilyos'}, {name:'Nonstop Beach', query:'Nonstop+Beach+Kilyos'}, {name:'Tirmata Plajı', query:'Tirmata+Plajı+Kilyos'} ] },
+      { name:'🌳 Atatürk Arboretumu', stops:[ {name:'Atatürk Arboretumu', query:'Atatürk+Arboretumu+İstanbul'}, {name:'Kemerburgaz', query:'Kemerburgaz+İstanbul'}, {name:'Belgrad Ormanı', query:'Belgrad+Ormanı+İstanbul'}, {name:'Bahçeköy', query:'Bahçeköy+İstanbul'} ] },
+      { name:'🏛️ Miniatürk', stops:[ {name:'Miniatürk', query:'Miniatürk+İstanbul'}, {name:'Haliç', query:'Haliç+İstanbul'}, {name:'Rahmi Koç Müzesi', query:'Rahmi+Koç+Müzesi+İstanbul'}, {name:'Eyüp', query:'Eyüp+İstanbul'} ] },
+      { name:'🎢 Vialand Eğlence', stops:[ {name:'Vialand', query:'Vialand+İstanbul'}, {name:'Nefeskesen', query:'Nefeskesen+Vialand'}, {name:'Su Oyunları', query:'Vialand+Su+Oyunları'}, {name:'Vialand AVM', query:'Vialand+AVM'} ] },
+      { name:'🦁 İstanbul Akvaryum', stops:[ {name:'İstanbul Akvaryum', query:'İstanbul+Akvaryum+Florya'}, {name:'Florya Sahili', query:'Florya+Sahili+İstanbul'}, {name:'Florya Atatürk Köşkü', query:'Florya+Atatürk+Köşkü'}, {name:'Şenlikköy', query:'Şenlikköy+İstanbul'} ] },
+      { name:'🐠 Sea Life İstanbul', stops:[ {name:'Sea Life', query:'Sea+Life+İstanbul+Forum'}, {name:'Forum İstanbul AVM', query:'Forum+İstanbul+AVM'}, {name:'Bayrampaşa', query:'Bayrampaşa+İstanbul'}, {name:'Eyüp', query:'Eyüp+İstanbul'} ] },
+      { name:'🦜 Kuş Cenneti', stops:[ {name:'İstanbul Kuş Cenneti', query:'İstanbul+Kuş+Cenneti+Küçükçekmece'}, {name:'Küçükçekmece Gölü', query:'Küçükçekmece+Gölü'}, {name:'Avcılar Sahili', query:'Avcılar+Sahili'}, {name:'Ispartakule', query:'Ispartakule+İstanbul'} ] },
+      { name:'🎪 Bakırköy Sahil', stops:[ {name:'Bakırköy Sahili', query:'Bakırköy+Sahili+İstanbul'}, {name:'Ataköy Marina', query:'Ataköy+Marina+İstanbul'}, {name:'Yeşilköy Sahili', query:'Yeşilköy+Sahili+İstanbul'}, {name:'Florya', query:'Florya+İstanbul'} ] },
+      { name:'🏖️ Yeşilköy & Florya', stops:[ {name:'Yeşilköy Sahili', query:'Yeşilköy+Sahili+İstanbul'}, {name:'Florya Atatürk Köşkü', query:'Florya+Atatürk+Köşkü'}, {name:'İstanbul Akvaryum', query:'İstanbul+Akvaryum+Florya'}, {name:'Yeşilköy Çarşı', query:'Yeşilköy+Çarşı+İstanbul'} ] },
+      { name:'🎵 Harbiye Açıkhava', stops:[ {name:'Harbiye Açıkhava Tiyatrosu', query:'Harbiye+Açıkhava+Tiyatrosu+İstanbul'}, {name:'Askeri Müze', query:'Askeri+Müze+İstanbul'}, {name:'Nişantaşı', query:'Nişantaşı+İstanbul'}, {name:'Maçka Parkı', query:'Maçka+Parkı+İstanbul'} ] },
+      { name:'🛍️ Cevahir AVM', stops:[ {name:'Cevahir AVM', query:'Cevahir+AVM+İstanbul'}, {name:'Şişli', query:'Şişli+İstanbul'}, {name:'Mecidiyeköy', query:'Mecidiyeköy+İstanbul'}, {name:'Trump Towers', query:'Trump+Towers+İstanbul'} ] },
+      { name:'🌃 Bağdat Caddesi Alışveriş', stops:[ {name:'Bağdat Caddesi', query:'Bağdat+Caddesi+İstanbul'}, {name:'Caddebostan', query:'Caddebostan+İstanbul'}, {name:'Suadiye', query:'Suadiye+İstanbul'}, {name:'Erenköy', query:'Erenköy+İstanbul'} ] },
+      { name:'🍣 Nişantaşı Kafeler', stops:[ {name:'Abdi İpekçi Caddesi', query:'Abdi+İpekçi+Caddesi+İstanbul'}, {name:'Teşvikiye Camii', query:'Teşvikiye+Camii+İstanbul'}, {name:'City\'s', query:'Citys+Nişantaşı'}, {name:'Maçka Parkı', query:'Maçka+Parkı+İstanbul'} ] },
+      { name:'🍰 Bebek Kahvaltı', stops:[ {name:'Bebek Sahili', query:'Bebek+Sahili+İstanbul'}, {name:'Bebek Kahvecileri', query:'Bebek+Kahve+İstanbul'}, {name:'Bebek Parkı', query:'Bebek+Parkı+İstanbul'}, {name:'Arnavutköy', query:'Arnavutköy+İstanbul'} ] },
+      { name:'🥙 Ortaköy Kumpir', stops:[ {name:'Ortaköy Meydanı', query:'Ortaköy+Meydanı+İstanbul'}, {name:'Ortaköy Camii', query:'Ortaköy+Camii+İstanbul'}, {name:'Kumpirciler', query:'Ortaköy+Kumpir'}, {name:'Boğaz Köprüsü Manzarası', query:'Ortaköy+Boğaz+Köprüsü+Manzara'} ] },
+      { name:'☕ Moda Çay Bahçesi', stops:[ {name:'Moda Çay Bahçesi', query:'Moda+Çay+Bahçesi+Kadıköy'}, {name:'Moda Sahili', query:'Moda+Sahili+Kadıköy'}, {name:'Moda İskelesi', query:'Moda+İskelesi+İstanbul'}, {name:'Kadıköy Boğa', query:'Kadıköy+Boğa+Heykeli+İstanbul'} ] },
+      { name:'🎸 Kadıköy Sahne', stops:[ {name:'Kadıköy Sahne', query:'Kadıköy+Sahne+İstanbul'}, {name:'Barlar Sokağı', query:'Barlar+Sokağı+Kadıköy'}, {name:'Kadıköy İskelesi', query:'Kadıköy+İskelesi+İstanbul'}, {name:'Moda', query:'Moda+Kadıköy'} ] },
+      { name:'🌉 Boğaz Turu Uzun', stops:[ {name:'Eminönü', query:'Eminönü+İstanbul'}, {name:'Üsküdar', query:'Üsküdar+İstanbul'}, {name:'Beşiktaş', query:'Beşiktaş+İstanbul'}, {name:'Sarıyer', query:'Sarıyer+İstanbul'} ] },
+      { name:'🏖️ Prens Adaları Turu', stops:[ {name:'Büyükada', query:'Büyükada+İstanbul'}, {name:'Heybeliada', query:'Heybeliada+İstanbul'}, {name:'Burgazada', query:'Burgazada+İstanbul'}, {name:'Kınalıada', query:'Kınalıada+İstanbul'} ] },
+      { name:'🌳 Fenerbahçe Parkı', stops:[ {name:'Fenerbahçe Parkı', query:'Fenerbahçe+Parkı+İstanbul'}, {name:'Kalamış Marina', query:'Kalamış+Marina+İstanbul'}, {name:'Fenerbahçe Burnu', query:'Fenerbahçe+Burnu+İstanbul'}, {name:'Fenerbahçe Stadı', query:'Fenerbahçe+Stadı+İstanbul'} ] },
+      { name:'🏛️ Dolmabahçe & Beşiktaş', stops:[ {name:'Dolmabahçe Sarayı', query:'Dolmabahçe+Sarayı+İstanbul'}, {name:'Saat Kulesi', query:'Dolmabahçe+Saat+Kulesi+İstanbul'}, {name:'Beşiktaş İskelesi', query:'Beşiktaş+İskelesi+İstanbul'}, {name:'Vodafone Park', query:'Vodafone+Park+İstanbul'} ] },
+      { name:'🌲 Yıldız Parkı Piknik', stops:[ {name:'Yıldız Parkı', query:'Yıldız+Parkı+Beşiktaş+İstanbul'}, {name:'Malta Köşkü', query:'Malta+Köşkü+Yıldız+Parkı'}, {name:'Çadır Köşkü', query:'Çadır+Köşkü+Yıldız+Parkı'}, {name:'Beşiktaş', query:'Beşiktaş+İstanbul'} ] },
+      { name:'🏞️ Küçüksu & Beykoz', stops:[ {name:'Küçüksu Kasrı', query:'Küçüksu+Kasrı+İstanbul'}, {name:'Beykoz Korusu', query:'Beykoz+Korusu+İstanbul'}, {name:'Anadolu Hisarı', query:'Anadolu+Hisarı+İstanbul'}, {name:'Beykoz İskelesi', query:'Beykoz+İskelesi+İstanbul'} ] },
+      { name:'⛵ Çubuklu & Paşabahçe', stops:[ {name:'Çubuklu Sahili', query:'Çubuklu+Sahili+İstanbul'}, {name:'Paşabahçe', query:'Paşabahçe+İstanbul'}, {name:'Hidiv Kasrı', query:'Hidiv+Kasrı+İstanbul'}, {name:'Çubuklu İskelesi', query:'Çubuklu+İskelesi+İstanbul'} ] },
+      { name:'🏘️ Kuzguncuk Turu', stops:[ {name:'Kuzguncuk Evleri', query:'Kuzguncuk+İstanbul'}, {name:'Kuzguncuk Bostanı', query:'Kuzguncuk+Bostanı'}, {name:'Kuzguncuk İskelesi', query:'Kuzguncuk+İskelesi+İstanbul'}, {name:'Üryanizade Camii', query:'Üryanizade+Camii+Kuzguncuk'} ] },
+      { name:'🌸 Beylerbeyi Sarayı', stops:[ {name:'Beylerbeyi Sarayı', query:'Beylerbeyi+Sarayı+İstanbul'}, {name:'Beylerbeyi Sahili', query:'Beylerbeyi+Sahili+İstanbul'}, {name:'Beylerbeyi Camii', query:'Beylerbeyi+Camii+İstanbul'}, {name:'Çengelköy', query:'Çengelköy+İstanbul'} ] },
+      { name:'🌉 Fatih Sultan Mehmet Köprüsü', stops:[ {name:'FSM Köprüsü', query:'Fatih+Sultan+Mehmet+Köprüsü+İstanbul'}, {name:'Rumeli Hisarı', query:'Rumeli+Hisarı+İstanbul'}, {name:'Anadolu Hisarı', query:'Anadolu+Hisarı+İstanbul'}, {name:'Emirgan', query:'Emirgan+İstanbul'} ] }
     ];
 
     const routesContainer = document.getElementById('routesContainer');
@@ -467,8 +500,6 @@
         const a = Math.random()*Math.PI*2, d = 60+Math.random()*180;
         h.style.setProperty('--bx', Math.cos(a)*d*0.5+'px');
         h.style.setProperty('--by', Math.sin(a)*d*0.5-Math.random()*60+'px');
-        h.style.setProperty('--ex', Math.cos(a)*d+'px');
-        h.style.setProperty('--ey', Math.sin(a)*d-Math.random()*100+'px');
         container.appendChild(h);
         setTimeout(() => { if (h.parentNode) h.remove(); }, 1800);
       }
