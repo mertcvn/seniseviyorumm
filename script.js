@@ -82,18 +82,43 @@ window.onload = init;
 /* ================= SURPRISE BUTTON ================= */
 function surprise(){
 
-let date = document.getElementById("date").value;
+const date = document.getElementById("date").value;
 if(!date) return;
 
-let a1 = acts[Math.floor(Math.random()*acts.length)];
-let a2 = acts[Math.floor(Math.random()*acts.length)];
+/* 🎯 ETKİNLİK */
+const act = activities[Math.floor(Math.random()*activities.length)];
 
-data.push({date,a1,a2});
+/* 🗺 ROTA (3 nokta) */
+const r1 = places[Math.floor(Math.random()*places.length)];
+const r2 = places[Math.floor(Math.random()*places.length)];
+const r3 = places[Math.floor(Math.random()*places.length)];
 
-document.getElementById("out").innerHTML =
-`💖 <b>${date}</b><br>${a1}<br>${a2}`;
+data.push({date,act,r1,r2,r3});
 
-renderLog();
+/* 💥 NET AYRI OUTPUT */
+document.getElementById("out").innerHTML = `
+💖 <b>${date}</b>
+
+<hr>
+
+🎯 <b>BUGÜN YAPILACAK AKTİVİTE</b><br>
+👉 ${act}
+
+<hr>
+
+🗺 <b>BUGÜN GEZİLEBİLECEK ROTA</b><br>
+👉 ${r1}<br>
+👉 ${r2}<br>
+👉 ${r3}
+`;
+
+/* RIGHT PANEL DE AYRI */
+document.getElementById("mapBox").innerHTML = `
+🗺 <b>ROTA PLANI</b><br>
+${r1} → ${r2} → ${r3}
+`;
+
+render();
 }
 
 /* ================= MAP MODE ================= */
