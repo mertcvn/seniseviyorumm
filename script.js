@@ -1,178 +1,109 @@
-/********************
-  AŞK SİSTEMİ CORE JS
-********************/
 
-/* ===== DATA ===== */
-const romantic = [];
-const fun = [];
-const memory = [];
+/* =========================
+   SMART LOVE ENGINE (300 EVENTS)
+========================= */
 
-for (let i = 1; i <= 300; i++) {
-    romantic.push("Romantik an " + i);
-    fun.push("Eğlenceli an " + i);
-    memory.push("Birlikte hatıra " + i);
+/* --- ROMANTIC (100) --- */
+const romantic = [
+"Gün batımında sahil yürüyüşü yapın ve sessizce manzarayı izleyin.",
+"Kafede uzun bir sohbet ederek birbirinizi daha derin tanıyın.",
+"Birlikte gün doğumunu izleyip hayallerinizi paylaşın.",
+"Doğada piknik yaparak huzurlu bir gün geçirin.",
+"Yıldızları izleyip gelecek planlarınızı konuşun.",
+"El ele yürüyüş yapıp şehir ışıklarını izleyin.",
+"Birlikte deniz kenarında oturup dalga seslerini dinleyin.",
+"Küçük bir not yazıp birbirinize verin.",
+"Birlikte eski anılarınızı konuşun.",
+"Birlikte sessiz bir müzik dinleme zamanı geçirin."
+];
+
+/* 100 ROMANTIC FILLER */
+for(let i=10;i<100;i++){
+    romantic.push("Birlikte huzurlu ve sakin bir gün planlayın ve anın tadını çıkarın.");
 }
 
-/* ===== LOGIN ===== */
-function login() {
-    const u1 = document.getElementById("u1").value;
-    const u2 = document.getElementById("u2").value;
-    const pass = document.getElementById("pass").value;
+/* --- FUN (100) --- */
+const fun = [
+"Evde film gecesi yapıp abur cubur savaşı yapın.",
+"Sokakta rastgele yemek turu yapın.",
+"Oyun oynayıp kaybedene komik ceza verin.",
+"Dans challenge yapın ve en komiğini seçin.",
+"Fotoğraf challenge yapın ve en iyi kareyi bulun.",
+"Karaoke gecesi yapın.",
+"Birlikte yemek yapıp yarışın.",
+"Şehirde keşif turu yapın.",
+"Meme üretme yarışması yapın.",
+"Rastgele yürüyüş yapıp kaybolmayı deneyin."
+];
 
-    if (pass === "ask123") {
-        localStorage.setItem("u1", u1);
-        localStorage.setItem("u2", u2);
+for(let i=10;i<100;i++){
+    fun.push("Birlikte eğlenceli bir aktivite yapın ve bol bol gülün.");
+}
 
-        document.getElementById("login").style.display = "none";
-        document.getElementById("app").style.display = "block";
+/* --- MEMORY (100) --- */
+const memory = [
+"O günün anısını temsil eden fotoğraf çekin.",
+"Birbirinize mektup yazın ve saklayın.",
+"O günü anlatan şarkı seçin.",
+"Küçük bir hatıra kutusu yapın.",
+"O günü 3 kelimeyle anlatın.",
+"Birlikte video çekin.",
+"Geleceğe mesaj yazın.",
+"Bir anı defteri oluşturun.",
+"Bir fotoğraf albümü oluşturun.",
+"O günü ses kaydıyla anlatın."
+];
 
-        document.getElementById("title").innerText =
-            "❤️ " + u1 + " & " + u2 + " Aşk Evreni ❤️";
-    } else {
-        alert("Yanlış şifre 😢");
+for(let i=10;i<100;i++){
+    memory.push("O günü hatırlatacak küçük bir anı oluşturun ve saklayın.");
+}
+
+/* =========================
+   SEED SYSTEM
+========================= */
+function getSeed(dateStr){
+    const d = new Date(dateStr);
+    return (d.getDate() + d.getMonth()*11 + d.getFullYear()) % 100;
+}
+
+/* =========================
+   MAIN GENERATOR
+========================= */
+function generatePlan(){
+
+    const date = document.getElementById("date").value;
+    const out = document.getElementById("output");
+
+    if(!date){
+        out.innerHTML = "Lütfen tarih seç ❤️";
+        return;
     }
+
+    const i = getSeed(date);
+
+    out.innerHTML = `
+        <div style="line-height:1.7">
+
+        ❤️ <b>Romantik Aktivite</b><br>
+        ${romantic[i]}
+
+        <br><br>
+        🎮 <b>Eğlenceli Aktivite</b><br>
+        ${fun[i]}
+
+        <br><br>
+        📸 <b>Anı Aktivitesi</b><br>
+        ${memory[i]}
+
+        </div>
+    `;
 }
 
-/* ===== HEARTS ANIMATION ===== */
-setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 6000);
-}, 200);
-
-/* ===== COUNTDOWN ===== */
-let countdownInterval;
-
-function countdown() {
-    clearInterval(countdownInterval);
-
-    const dateValue = document.getElementById("date").value;
-    if (!dateValue) return;
-
-    const target = new Date(dateValue);
-
-    countdownInterval = setInterval(() => {
-        const now = new Date();
-        const diff = target - now;
-
-        if (diff <= 0) {
-            document.getElementById("time").innerText =
-                "❤️ BUGÜN BULUŞMA GÜNÜ!";
-            return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-        document.getElementById("time").innerText =
-            days + " gün kaldı ❤️";
-    }, 1000);
+/* =========================
+   TODAY AUTO
+========================= */
+function todayPlan(){
+    const t = new Date().toISOString().split("T")[0];
+    document.getElementById("date").value = t;
+    generatePlan();
 }
-
-/* ===== YOUTUBE PLAYLIST ===== */
-const playlistURL =
-"https://www.youtube.com/embed/videoseries?list=PLbIn9TEuFDLrl-vt1zL1pd0MUipFgfiHc";
-
-let isMuted = true;
-
-function muteToggle() {
-    const frame = document.getElementById("ytFrame");
-
-    isMuted = !isMuted;
-    frame.src = playlistURL + "&autoplay=1&mute=" + (isMuted ? "1" : "0");
-}
-
-function restartMusic() {
-    const frame = document.getElementById("ytFrame");
-    isMuted = true;
-    frame.src = playlistURL + "&autoplay=1&mute=1";
-}
-
-function nextSong() {
-    const frame = document.getElementById("ytFrame");
-    frame.src = playlistURL + "&autoplay=1&mute=" + (isMuted ? "1" : "0");
-}
-
-/* ===== SURPRISE ===== */
-function surprise() {
-    const i = Math.floor(Math.random() * 300);
-
-    const text =
-        "❤️ " + romantic[i] + "<br>" +
-        "🎮 " + fun[i] + "<br>" +
-        "📸 " + memory[i];
-
-    document.getElementById("mtext").innerHTML = text;
-    document.getElementById("modal").style.display = "block";
-}
-
-/* ===== CHAT ===== */
-function send() {
-    const msg = document.getElementById("msg").value;
-
-    if (!msg) return;
-
-    const div = document.createElement("div");
-    div.innerText = "💌 " + msg;
-
-    document.getElementById("chat").appendChild(div);
-    document.getElementById("msg").value = "";
-}
-
-/* ===== PHOTO ALBUM ===== */
-function addPhoto(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const img = document.createElement("img");
-        img.src = e.target.result;
-        document.getElementById("gallery").appendChild(img);
-    };
-
-    reader.readAsDataURL(file);
-}
-
-/* ===== MINI GAME ===== */
-let score = 0;
-
-function startGame() {
-    const circle = document.createElement("div");
-    circle.className = "circle";
-
-    circle.style.top = Math.random() * 80 + "vh";
-    circle.style.left = Math.random() * 80 + "vw";
-
-    document.body.appendChild(circle);
-
-    circle.onclick = () => {
-        score++;
-        document.getElementById("score").innerText = score;
-        circle.remove();
-    };
-
-    setTimeout(startGame, 900);
-}
-
-/* ===== MODAL CLOSE ===== */
-function closeM() {
-    document.getElementById("modal").style.display = "none";
-}
-
-/* ===== AUTO LOAD NAMES ===== */
-window.onload = () => {
-    const u1 = localStorage.getItem("u1");
-    const u2 = localStorage.getItem("u2");
-
-    if (u1 && u2) {
-        const login = document.getElementById("login");
-        const app = document.getElementById("app");
-
-        login.style.display = "none";
-        app.style.display = "block";
-
-        document.getElementById("title").innerText =
-            "❤️ " + u1 + " & " + u2 + " Aşk Evreni ❤️";
-    }
-};
