@@ -155,3 +155,20 @@ player.setVolume(50); // 💖 istediğin %50 ses
 function startMusic(){
 player.playVideo();
 }
+
+function mapMode(){
+let places = [
+"Galata Kulesi Istanbul",
+"Kadıköy Istanbul",
+"Üsküdar Istanbul",
+"Ortaköy Mosque Istanbul"
+];
+
+let place = places[Math.floor(Math.random()*places.length)];
+
+document.getElementById("mapBox").innerHTML =
+"📍 Seçilen yer: " + place;
+
+document.getElementById("mapFrame").src =
+`https://www.google.com/maps?q=${encodeURIComponent(place)}&output=embed`;
+}
