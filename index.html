@@ -2,180 +2,182 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sürpriz Gün 💖</title>
-
+<title>Love Planner 💖</title>
 <style>
-body {
-    margin: 0;
-    font-family: "Segoe UI", Arial;
-    background: radial-gradient(circle at top, #2a0000, #0a0a0a);
-    color: white;
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1a0000,#330000,#1a0000);
+color:white;
+overflow:hidden;
 }
 
-.page {
-    display: none;
-    min-height: 100vh;
+.container{
+display:flex;
+height:100vh;
 }
 
-.active {
-    display: block;
+.left{
+flex:2;
+padding:30px;
+position:relative;
 }
 
-.center {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.right{
+flex:1;
+background:rgba(0,0,0,0.4);
+padding:20px;
+overflow-y:auto;
+border-left:2px solid #ff3b6b;
 }
 
-h1 {
-    color: #ff2e63;
-    text-shadow: 0 0 20px rgba(255,46,99,0.6);
+h1{
+color:#ff3b6b;
+text-shadow:0 0 10px #ff3b6b;
 }
 
-input {
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    margin: 10px;
+button{
+background:#ff2e63;
+border:none;
+padding:10px 15px;
+color:white;
+cursor:pointer;
+border-radius:10px;
+box-shadow:0 0 10px #ff2e63;
+margin-top:10px;
 }
 
-button {
-    background: linear-gradient(135deg, #ff2e63, #ff4d6d);
-    border: none;
-    padding: 14px 24px;
-    color: white;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: 0.3s;
+button:hover{
+transform:scale(1.05);
 }
 
-button:hover {
-    transform: scale(1.05);
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+margin-top:10px;
 }
 
-.card {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,46,99,0.3);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
+.card{
+background:rgba(255,255,255,0.05);
+padding:15px;
+margin-top:15px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(255,0,100,0.3);
 }
 
-li {
-    list-style: none;
-    padding: 14px;
-    margin: 10px 0;
-    background: rgba(255,46,99,0.08);
-    border-left: 4px solid #ff2e63;
-    border-radius: 10px;
+.heart{
+position:absolute;
+color:#ff2e63;
+animation:float 6s infinite;
 }
 
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);}
+100%{transform:translateY(-10vh) scale(1);}
+}
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
-<div id="home" class="page active">
-    <div class="center">
-        <h1>💖 Sürpriz Gün 💖</h1>
-        <p>Bir tarih seç, sadece 2 özel an gelsin</p>
+<div class="container">
 
-        <input type="date" id="date">
-        <button onclick="generate()">Sürprizi Gör</button>
-    </div>
+<div class="left">
+<h1>💖 Love Date Planner</h1>
+
+<input type="date" id="date">
+
+<br>
+
+<button ondblclick="generate()">Günlük Sürpriz Plan Oluştur 💌</button>
+
+<button onclick="toggleMusic()">🎵 Müzik Aç/Kapat</button>
+
+<div class="card" id="output"></div>
+
+<!-- YouTube Music -->
+<iframe id="yt" width="0" height="0"
+src="https://www.youtube.com/embed/kJQP7kiw5Fk?enablejsapi=1"
+allow="autoplay"></iframe>
+
 </div>
 
-<!-- RESULT -->
-<div id="result" class="page">
-    <div class="card">
+<div class="right">
+<h2>📅 Plan Geçmişi</h2>
+<div id="log"></div>
+</div>
 
-        <h1>💖 Senin 2 Özel Anın</h1>
-        <p id="dateText"></p>
-
-        <ul id="list"></ul>
-
-        <div style="text-align:center;">
-            <button onclick="back()">Geri</button>
-        </div>
-
-    </div>
 </div>
 
 <script>
-
-/* AKTİVİTE HAVUZU */
 const activities = [
-"El ele sahilde gün batımı yürüyüşü",
-"Kahve içip uzun sohbet etmek",
-"Piknik yapıp birlikte müzik dinlemek",
-"Şehirde kaybolarak keşif yapmak",
-"Fotoğraf çekip anı biriktirmek",
-"Dondurma alıp parkta oturmak",
-"Yıldızlara bakarak hayal kurmak",
-"Birlikte yemek yapmaya çalışmak",
-"Sessizce sarılıp oturmak",
-"Gece yürüyüşüne çıkmak"
+"Deniz kenarında yürüyüş",
+"Birlikte kahve yapma",
+"Gece yıldız izleme",
+"Birlikte yemek pişirme",
+"Sinema gecesi",
+"Piknik yapma",
+"Fotoğraf çekimi",
+"Karaoke gecesi",
+"Müze gezisi",
+"Bisiklet turu",
+"Kitap okuma saati",
+"Birlikte resim yapma",
+"Kumsalda oturma",
+"Şehir keşfi",
+"Yemek yarışması",
+"Film maratonu",
+"Mektup yazma",
+"El ele yürüyüş",
+"Kamp yapma planı",
+"Evde spa günü"
 ];
 
-/* BASİT SEED (TARİHE GÖRE SABİT SEÇİM) */
-function seedFromDate(str){
-    let sum = 0;
-    for(let i=0;i<str.length;i++){
-        sum += str.charCodeAt(i);
-    }
-    return sum;
+// 300 yapmak için çoğalt
+while(activities.length < 300){
+activities.push(activities[Math.floor(Math.random()*20)] + " 💕");
 }
 
 function generate(){
+let date = document.getElementById("date").value;
+if(!date){alert("Tarih seç!"); return;}
 
-    const date = document.getElementById("date").value;
+let a1 = activities[Math.floor(Math.random()*activities.length)];
+let a2 = activities[Math.floor(Math.random()*activities.length)];
 
-    if(!date){
-        alert("Bir tarih seç 💖");
-        return;
-    }
+document.getElementById("output").innerHTML =
+`<h3>${date} için sürprizler 💖</h3>
+<p>1️⃣ ${a1}</p>
+<p>2️⃣ ${a2}</p>`;
 
-    document.getElementById("home").classList.remove("active");
-    document.getElementById("result").classList.add("active");
-
-    document.getElementById("dateText").innerText = "📅 " + date;
-
-    const list = document.getElementById("list");
-    list.innerHTML = "";
-
-    let seed = seedFromDate(date);
-
-    // deterministic 2 seçim
-    let first = activities[seed % activities.length];
-    let second = activities[(seed * 7) % activities.length];
-
-    // aynı çıkarsa değiştir
-    if(first === second){
-        second = activities[(seed + 3) % activities.length];
-    }
-
-    let li1 = document.createElement("li");
-    li1.innerText = "💖 " + first;
-
-    let li2 = document.createElement("li");
-    li2.innerText = "💖 " + second;
-
-    list.appendChild(li1);
-    list.appendChild(li2);
+let log = document.getElementById("log");
+log.innerHTML += `<div class='card'><b>${date}</b><br>${a1}<br>${a2}</div>`;
 }
 
-function back(){
-    document.getElementById("result").classList.remove("active");
-    document.getElementById("home").classList.add("active");
+let music = true;
+
+function toggleMusic(){
+let yt = document.getElementById("yt");
+if(music){
+yt.src = "";
+music = false;
+}else{
+yt.src = "https://www.youtube.com/embed/kJQP7kiw5Fk?enablejsapi=1";
+music = true;
+}
 }
 
+// floating hearts
+setInterval(()=>{
+let heart = document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+10+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},500);
 </script>
 
 </body>
