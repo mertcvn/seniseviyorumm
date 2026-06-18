@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Aşk Dolu 300 Aktivite | Sevgiliyle Yapılacaklar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Uçuşan Kalpler -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Ana Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <h1 class="title">💕 Aşk Aktiviteleri</h1>
+            <p class="subtitle">Sevgilinizle unutulmaz anılar için 300 özel fikir</p>
+        </header>
+
+        <!-- Tarih Seçici ve Sürpriz Butonu -->
+        <div class="date-surprise-section glass-card">
+            <div class="date-picker-wrapper">
+                <label for="datePicker" class="date-label">
+                    <i class="fas fa-calendar-heart"></i> Buluşma Tarihinizi Seçin
+                </label>
+                <input type="date" id="datePicker" class="date-picker">
+            </div>
+            <button id="surpriseBtn" class="surprise-btn">
+                <i class="fas fa-gift"></i> Sürpriz Yap! ✨
+            </button>
+        </div>
+
+        <!-- Günün Rengi ve Şarkısı -->
+        <div class="daily-specials">
+            <div class="color-card glass-card">
+                <div class="color-circle" id="colorCircle"></div>
+                <div class="color-info">
+                    <h3><i class="fas fa-palette"></i> Günün Rengi</h3>
+                    <p id="colorName">Aşk Pembesi</p>
+                    <span id="colorHex">#FF69B4</span>
+                </div>
+            </div>
+            <div class="song-card glass-card">
+                <div class="song-info">
+                    <h3><i class="fas fa-music"></i> Günün Şarkısı</h3>
+                    <p id="songName">All of Me</p>
+                    <p id="songArtist">John Legend</p>
+                </div>
+                <div id="youtubePlayer" class="youtube-player"></div>
+            </div>
+        </div>
+
+        <!-- Aktiviteler Bölümü -->
+        <div class="activities-section" id="activitiesSection">
+            <div class="activities-placeholder" id="activitiesPlaceholder">
+                <div class="placeholder-content">
+                    <i class="fas fa-question-circle placeholder-icon"></i>
+                    <p>Sürpriz aktivitelerinizi görmek için butona tıklayın!</p>
+                    <div class="placeholder-hearts">
+                        <span>💖</span><span>💝</span><span>💕</span>
+                    </div>
+                </div>
+            </div>
+            <div class="activities-grid" id="activitiesGrid" style="display: none;">
+                <!-- Aktiviteler JavaScript ile doldurulacak -->
+            </div>
+        </div>
+
+        <!-- İstanbul Rotaları -->
+        <div class="routes-section glass-card">
+            <h2 class="section-title">
+                <i class="fas fa-map-marked-alt"></i> İstanbul Rotaları
+            </h2>
+            <div class="routes-grid" id="routesGrid">
+                <!-- Rotalar JavaScript ile doldurulacak -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
