@@ -11,53 +11,42 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #2b0000, #5a0000, #1a0000);
     color: white;
-    overflow-x: hidden;
+    height: 100vh;
+
+    /* 👇 ORTALAMA SİSTEMİ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-/* HEADER */
-header {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-header h1 {
-    font-size: 40px;
+/* BAŞLIK */
+h1 {
     color: #ff2e63;
     text-shadow: 0 0 20px #ff2e63;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-header p {
-    opacity: 0.8;
-}
-
-/* LİSTE KUTUSU */
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    background: rgba(255, 0, 60, 0.15);
-    margin: 10px 0;
-    padding: 15px;
-    border-left: 5px solid #ff2e63;
-    border-radius: 12px;
+/* BUTON */
+button {
+    background: #ff2e63;
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    font-size: 18px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 46, 99, 0.6);
     transition: 0.3s;
-    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
 }
 
-li:hover {
-    transform: scale(1.03);
-    background: rgba(255, 0, 60, 0.25);
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 46, 99, 0.9);
 }
 
-/* KALP ANİMASYONU */
+/* KALPLER */
 .heart {
     position: fixed;
     top: -10px;
@@ -71,45 +60,17 @@ li:hover {
     0% {transform: translateY(0) rotate(0deg);}
     100% {transform: translateY(100vh) rotate(360deg);}
 }
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px;
-    opacity: 0.6;
-}
 </style>
-
 </head>
+
 <body>
 
-<header>
-    <h1>💖 Sevgiliyle 300 Anı 💖</h1>
-    <p>Birlikte geçirilen en güzel saatler</p>
-</header>
+<h1>💖 Hazır mısın? 💖</h1>
 
-<div class="container">
+<button onclick="alert('Sevgilinle harika bir gün başlıyor 💞')">
+Başla
+</button>
 
-<ul>
-<li>12:00 buluşup sarılmak</li>
-<li>Kahvaltı yapmak</li>
-<li>Kahve içip yürümek</li>
-<li>El ele sahil yürüyüşü</li>
-<li>Birbirine hayaller anlatmak</li>
-<li>Fotoğraf çekmek</li>
-<li>Birlikte şarkı dinlemek</li>
-<li>Gülme krizine girmek</li>
-<li>Dondurma yemek</li>
-<li>Gün batımı izlemek</li>
-</ul>
-
-</div>
-
-<footer>
-💞 Made with love 💞
-</footer>
-
-<!-- KALPLER -->
 <script>
 function createHeart() {
     const heart = document.createElement("div");
