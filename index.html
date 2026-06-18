@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>💖 Love Engine Ultra WOW</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Montserrat',sans-serif;
+background: radial-gradient(circle at top,#2a0000,#000);
+color:white;
+overflow:hidden;
+}
+
+/* GLASS UI */
+.container{
+display:flex;
+height:100vh;
+}
+
+/* LEFT PANEL */
+.left{
+flex:2;
+padding:30px;
+position:relative;
+}
+
+h1{
+font-family:'Playfair Display';
+font-size:40px;
+color:#ff3b6b;
+text-shadow:0 0 25px #ff3b6b;
+}
+
+/* INPUT STYLE */
+input,button{
+padding:12px;
+border-radius:12px;
+border:none;
+margin-top:10px;
+}
+
+input{
+background:rgba(255,255,255,0.08);
+color:white;
+outline:none;
+}
+
+button{
+background:linear-gradient(135deg,#ff2e63,#ff7aa2);
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #ff2e63;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* RIGHT PANEL */
+.right{
+flex:1;
+background:rgba(255,255,255,0.05);
+backdrop-filter: blur(15px);
+border-left:1px solid rgba(255,255,255,0.1);
+padding:20px;
+overflow-y:auto;
+}
+
+/* CARDS */
+.card{
+background:rgba(255,255,255,0.06);
+padding:14px;
+margin-top:10px;
+border-radius:16px;
+box-shadow:0 0 20px rgba(255,0,100,0.15);
+}
+
+/* HEARTS */
+.heart{
+position:absolute;
+color:#ff2e63;
+animation:float 6s linear forwards;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);}
+100%{transform:translateY(-10vh) scale(1);}
+}
+
+/* GLASS INPUT AREA */
+.glass{
+background:rgba(255,255,255,0.06);
+padding:15px;
+border-radius:20px;
+backdrop-filter: blur(10px);
+margin-top:10px;
+}
+
+/* LOVE BAR */
+.bar{
+width:100%;
+height:12px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.fill{
+height:100%;
+width:70%;
+background:linear-gradient(90deg,#ff2e63,#ff7aa2);
+transition:0.5s;
+}
+
+/* MUSIC CARD */
+.music{
+position:absolute;
+bottom:20px;
+left:30px;
+background:rgba(255,255,255,0.08);
+padding:10px;
+border-radius:15px;
+backdrop-filter: blur(10px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LEFT -->
+<div class="left">
+
+<h1>💖 Love Engine Ultra WOW</h1>
+
+<div class="glass">
+<input id="date" type="date">
+<br>
+<input id="n1" placeholder="Senin adın">
+<input id="n2" placeholder="Onun adı">
+
+<br>
+
+<button ondblclick="generate()">💌 Sürpriz Gün</button>
+<button onclick="story()">📖 Romantik Hikaye</button>
+</div>
+
+<div class="card" id="out"></div>
+
+<div class="bar"><div class="fill" id="bar"></div></div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+<h2>📅 Anılar</h2>
+<div id="log"></div>
+
+<h2>💬 Bugünün Mesajı</h2>
+<div class="card" id="msg"></div>
+
+<h2>📍 İstanbul Vibe</h2>
+<div class="card">
+Galata → Karaköy → Moda sahil → Üsküdar sunset 🌅💖
+</div>
+</div>
+
+</div>
+
+<!-- MUSIC PLAYER (SENİN LİNKİN) -->
+<div class="music">
+🎵 Music Player
+<br>
+
+<iframe id="yt" width="200" height="120"
+src="https://www.youtube.com/embed/videoseries?list=PLbIn9TEuFDLrl-vt1zL1pd0MUipFgfiHc&autoplay=1"
+allow="autoplay">
+</iframe>
+
+<br>
+<button onclick="toggle()">▶ / ⏸</button>
+</div>
+
+<script>
+
+/* 300 activities */
+const base=[
+"🌅 sunrise walk","🌌 stargazing","☕ coffee date",
+"🍝 romantic dinner","🎬 movie night","🚲 bike ride",
+"🧺 picnic","📸 photo walk","💌 love letter","🏖 seaside walk"
+];
+
+let acts=[];
+while(acts.length<300){
+acts.push(base[Math.floor(Math.random()*base.length)]+" 💖");
+}
+
+/* DATA */
+let data=[];
+
+/* MESSAGES */
+const msgs=[
+"Bugün kalpler daha yakın 💖",
+"Sonsuz bir an gibi ✨",
+"Bir bakış yeter 🌹",
+"Sen + O = Evren 💫"
+];
+
+document.getElementById("msg").innerHTML=
+msgs[Math.floor(Math.random()*msgs.length)];
+
+/* GENERATE */
+function generate(){
+let d=document.getElementById("date").value;
+if(!d)return;
+
+let a1=acts[Math.floor(Math.random()*acts.length)];
+let a2=acts[Math.floor(Math.random()*acts.length)];
+
+data.push({d,a1,a2});
+
+document.getElementById("out").innerHTML=
+`<b>${d}</b><br>${a1}<br>${a2}`;
+
+document.getElementById("bar").style.width=
+Math.random()*100+"%";
+
+render();
+}
+
+/* STORY */
+function story(){
+let n1=document.getElementById("n1").value||"Sen";
+let n2=document.getElementById("n2").value||"O";
+
+document.getElementById("out").innerHTML=
+`💖 ${n1} ve ${n2}, zamanın durduğu bir anda birlikte yürüyordu...
+Deniz sesi vardı, şehir susmuştu...`;
+}
+
+/* LOG */
+function render(){
+let log=document.getElementById("log");
+log.innerHTML="";
+data.slice().reverse().forEach(i=>{
+log.innerHTML+=`<div class="card">${i.d}<br>${i.a1}<br>${i.a2}</div>`;
+});
+}
+
+/* MUSIC TOGGLE */
+let play=true;
+function toggle(){
+let yt=document.getElementById("yt");
+yt.src = play ? "" : "https://www.youtube.com/embed/videoseries?list=PLbIn9TEuFDLrl-vt1zL1pd0MUipFgfiHc&autoplay=1";
+play=!play;
+}
+
+/* HEARTS */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},200);
+
+</script>
+
+</body>
+</html>
