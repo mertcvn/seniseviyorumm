@@ -67,7 +67,7 @@
       }
     });
 
-    // ── AŞK ÇARKI (20 segment, responsive) ─
+    // ── AŞK ÇARKI (20 segment) ─────────
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     const wheelContainer = document.querySelector('.wheel-container');
@@ -339,7 +339,7 @@
     loadYT();
 
     // ── ROTALAR (100 adet, ilk 3'ü görünür) ─
-      const routes = [
+    const routes = [
       { name:'🌅 Sultanahmet Klasik', stops:[ {name:'Ayasofya', query:'Ayasofya+i+Kebir+Camii+İstanbul'}, {name:'Sultanahmet Camii', query:'Sultanahmet+Camii+İstanbul'}, {name:'Yerebatan Sarnıcı', query:'Yerebatan+Sarnıcı+İstanbul'}, {name:'Gülhane Parkı', query:'Gülhane+Parkı+İstanbul'} ] },
       { name:'🕌 Süleymaniye & Vefa', stops:[ {name:'Süleymaniye Camii', query:'Süleymaniye+Camii+İstanbul'}, {name:'Vefa Bozacısı', query:'Vefa+Bozacısı+İstanbul'}, {name:'İstanbul Üniversitesi', query:'İstanbul+Üniversitesi+Beyazıt'}, {name:'Beyazıt Meydanı', query:'Beyazıt+Meydanı+İstanbul'} ] },
       { name:'🎭 Beyoğlu Sanat', stops:[ {name:'İstiklal Caddesi', query:'İstiklal+Caddesi+İstanbul'}, {name:'Galata Kulesi', query:'Galata+Kulesi+İstanbul'}, {name:'Pera Müzesi', query:'Pera+Müzesi+İstanbul'}, {name:'Çiçek Pasajı', query:'Çiçek+Pasajı+Beyoğlu+İstanbul'} ] },
@@ -424,6 +424,7 @@
       { name:'🌸 Beylerbeyi Sarayı', stops:[ {name:'Beylerbeyi Sarayı', query:'Beylerbeyi+Sarayı+İstanbul'}, {name:'Beylerbeyi Sahili', query:'Beylerbeyi+Sahili+İstanbul'}, {name:'Beylerbeyi Camii', query:'Beylerbeyi+Camii+İstanbul'}, {name:'Çengelköy', query:'Çengelköy+İstanbul'} ] },
       { name:'🌉 Fatih Sultan Mehmet Köprüsü', stops:[ {name:'FSM Köprüsü', query:'Fatih+Sultan+Mehmet+Köprüsü+İstanbul'}, {name:'Rumeli Hisarı', query:'Rumeli+Hisarı+İstanbul'}, {name:'Anadolu Hisarı', query:'Anadolu+Hisarı+İstanbul'}, {name:'Emirgan', query:'Emirgan+İstanbul'} ] }
     ];
+
     // Render routes
     const routesContainer = document.getElementById('routesContainer');
     routesContainer.innerHTML = '';
@@ -436,29 +437,24 @@
         '</div>';
       routesContainer.appendChild(div);
     });
+
     // Toggle button
     const toggleBtn = document.getElementById('toggleRoutesBtn');
-let allVisible = false;
-
-toggleBtn.addEventListener('click', () => {
-  const hiddenRoutes = document.querySelectorAll('.route-set.route-hidden');
-  if (!allVisible) {
-    // Tüm gizli rotaları göster
-    hiddenRoutes.forEach(el => el.classList.remove('route-hidden'));
-    toggleBtn.innerHTML = '▲ Daha Az Göster';
-    allVisible = true;
-  } else {
-    // İlk 3 hariç hepsini gizle
-    const allRoutes = document.querySelectorAll('.route-set');
-    allRoutes.forEach((el, idx) => {
-      if (idx >= 3) el.classList.add('route-hidden');
+    let allVisible = false;
+    toggleBtn.addEventListener('click', () => {
+      const hiddenRoutes = document.querySelectorAll('.route-set.route-hidden');
+      if (!allVisible) {
+        hiddenRoutes.forEach(el => el.classList.remove('route-hidden'));
+        toggleBtn.innerHTML = '▲ Daha Az Göster';
+        allVisible = true;
+      } else {
+        const allRoutes = document.querySelectorAll('.route-set');
+        allRoutes.forEach((el, idx) => { if (idx >= 3) el.classList.add('route-hidden'); });
+        toggleBtn.innerHTML = '▼ Daha Fazla Göster';
+        allVisible = false;
+        routesContainer.scrollIntoView({ behavior:'smooth' });
+      }
     });
-    toggleBtn.innerHTML = '▼ Daha Fazla Göster';
-    allVisible = false;
-    // İsteğe bağlı: yukarı kaydır
-    routesContainer.scrollIntoView({ behavior: 'smooth' });
-  }
-});
 
     // ── TARİH & SÜRPRİZ ────────────────
     const datePicker = document.getElementById('datePicker');
