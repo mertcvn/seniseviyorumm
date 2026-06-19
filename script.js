@@ -437,15 +437,21 @@ document.getElementById('spinWheelBtn').addEventListener('click', () => {
     ];
 
     const routesContainer = document.getElementById('routesContainer');
-    routesContainer.innerHTML = '';
-    routes.forEach(r => {
-      const div = document.createElement('div');
-      div.className = 'route-set';
-      div.innerHTML = `<div class="route-title">${r.name}</div><div class="route-stops">` +
-        r.stops.map((s,i) => `${i>0?'<span class="route-arrow">→</span>':''}<a class="route-stop" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.query)}" target="_blank" rel="noopener">${s.name}</a>`).join('') +
-        '</div>';
-      routesContainer.appendChild(div);
-    });
+routesContainer.innerHTML = '';
+routes.forEach(r => {
+  const div = document.createElement('div');
+  div.className = 'route-set';
+  div.innerHTML = `<div class="route-title">${r.name}</div><div class="route-stops">` +
+    r.stops.map((s,i) => `${i>0?'<span class="route-arrow">→</span>':''}<a class="route-stop" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.query)}" target="_blank" rel="noopener">${s.name}</a>`).join('') +
+    '</div>';
+  
+  // Tıklayınca aç/kapat
+  div.querySelector('.route-title').addEventListener('click', () => {
+    div.classList.toggle('open');
+  });
+  
+  routesContainer.appendChild(div);
+});
 
     // ── TARİH & SÜRPRİZ ────────────────
     const datePicker = document.getElementById('datePicker');
