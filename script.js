@@ -440,21 +440,27 @@
     });
     // Toggle button
     const toggleBtn = document.getElementById('toggleRoutesBtn');
-    let allVisible = false;
-    toggleBtn.addEventListener('click', () => {
-      const hiddenRoutes = document.querySelectorAll('.route-set.route-hidden');
-      if (!allVisible) {
-        hiddenRoutes.forEach(el => el.classList.remove('route-hidden'));
-        toggleBtn.innerHTML = '▲ Daha Az Göster';
-        allVisible = true;
-      } else {
-        const allRoutes = document.querySelectorAll('.route-set');
-        allRoutes.forEach((el, idx) => { if (idx >= 3) el.classList.add('route-hidden'); });
-        toggleBtn.innerHTML = '▼ Daha Fazla Göster';
-        allVisible = false;
-        routesContainer.scrollIntoView({ behavior:'smooth' });
-      }
+let allVisible = false;
+
+toggleBtn.addEventListener('click', () => {
+  const hiddenRoutes = document.querySelectorAll('.route-set.route-hidden');
+  if (!allVisible) {
+    // Tüm gizli rotaları göster
+    hiddenRoutes.forEach(el => el.classList.remove('route-hidden'));
+    toggleBtn.innerHTML = '▲ Daha Az Göster';
+    allVisible = true;
+  } else {
+    // İlk 3 hariç hepsini gizle
+    const allRoutes = document.querySelectorAll('.route-set');
+    allRoutes.forEach((el, idx) => {
+      if (idx >= 3) el.classList.add('route-hidden');
     });
+    toggleBtn.innerHTML = '▼ Daha Fazla Göster';
+    allVisible = false;
+    // İsteğe bağlı: yukarı kaydır
+    routesContainer.scrollIntoView({ behavior: 'smooth' });
+  }
+});
 
     // ── TARİH & SÜRPRİZ ────────────────
     const datePicker = document.getElementById('datePicker');
