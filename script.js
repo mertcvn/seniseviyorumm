@@ -339,7 +339,6 @@
     loadYT();
 
     // ── ROTALAR (100 adet, ilk 3'ü görünür) ─
-    const routes = [
       const routes = [
       { name:'🌅 Sultanahmet Klasik', stops:[ {name:'Ayasofya', query:'Ayasofya+i+Kebir+Camii+İstanbul'}, {name:'Sultanahmet Camii', query:'Sultanahmet+Camii+İstanbul'}, {name:'Yerebatan Sarnıcı', query:'Yerebatan+Sarnıcı+İstanbul'}, {name:'Gülhane Parkı', query:'Gülhane+Parkı+İstanbul'} ] },
       { name:'🕌 Süleymaniye & Vefa', stops:[ {name:'Süleymaniye Camii', query:'Süleymaniye+Camii+İstanbul'}, {name:'Vefa Bozacısı', query:'Vefa+Bozacısı+İstanbul'}, {name:'İstanbul Üniversitesi', query:'İstanbul+Üniversitesi+Beyazıt'}, {name:'Beyazıt Meydanı', query:'Beyazıt+Meydanı+İstanbul'} ] },
