@@ -660,5 +660,4 @@ toggleBtn.addEventListener('click', () => {
     });
 
     console.log('💖 Aşk Rotası - tüm özellikler aktif!');
-  }
 })();
