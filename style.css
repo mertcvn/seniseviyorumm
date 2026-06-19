@@ -289,95 +289,33 @@ body.night-mode .night-mode-toggle { background:rgba(255,255,255,0.05); }
 ::-webkit-scrollbar-thumb { background:rgba(255,107,138,0.5); border-radius:10px; }
 *:focus-visible { outline:2px solid #ff6b8a; outline-offset:3px; border-radius:4px; }
 
-/* ── ROTA AKORDEON ───────────────────── */
-.route-set {
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s;
+/* ── ROTALAR AÇILIR PANEL ─────────── */
+.section-title.toggle-routes {
   cursor: pointer;
-}
-
-.route-set:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 182, 193, 0.5);
-  box-shadow: 0 4px 25px rgba(255, 107, 138, 0.2);
-}
-
-.route-title {
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: #ffb6c1;
-  margin-bottom: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  letter-spacing: 0.5px;
-}
-
-.route-title::after {
-  content: '▼';
-  font-size: 0.9rem;
-  transition: transform 0.3s ease;
-  color: #ffb6c1;
-  margin-left: 8px;
-}
-
-.route-set.open .route-title::after {
-  transform: rotate(180deg);
-}
-
-.route-stops {
-  display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
-  align-items: center;
+  user-select: none;
+}
+
+.toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.routes-panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, margin-top 0.3s ease;
-  margin-top: 0;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.route-set.open .route-stops {
-  max-height: 500px;      /* Yeterince büyük */
-  margin-top: 12px;
+.routes-panel.open {
+  max-height: 3000px; /* Yeterince büyük */
 }
 
-.route-stop {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 50px;
-  background: rgba(255, 107, 138, 0.2);
-  border: 1px solid rgba(255, 107, 138, 0.4);
-  color: #fff;
-  font-size: 0.82rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.route-stop:hover {
-  background: rgba(255, 107, 138, 0.45);
-  border-color: #ff6b8a;
-  box-shadow: 0 0 18px rgba(255, 107, 138, 0.5);
-  transform: translateY(-2px);
-}
-
-.route-arrow {
-  color: #ff6b8a;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-@media (max-width: 700px) {
-  .route-stops {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .route-arrow {
-    display: none;
-  }
+/* Açıkken ok dönsün */
+.toggle-routes.open .toggle-icon {
+  transform: rotate(180deg);
 }
