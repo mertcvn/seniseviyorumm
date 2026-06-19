@@ -122,7 +122,9 @@ body.night-mode .night-mode-toggle { background:rgba(255,255,255,0.05); }
 .route-stop { display:inline-block; padding:8px 14px; border-radius:50px; background:rgba(255,107,138,0.2); border:1px solid rgba(255,107,138,0.4); color:#fff; font-size:0.82rem; cursor:pointer; transition:0.3s; text-decoration:none; font-weight:500; }
 .route-stop:hover { background:rgba(255,107,138,0.45); border-color:#ff6b8a; box-shadow:0 0 18px rgba(255,107,138,0.5); transform:translateY(-2px); }
 .route-arrow { color:#ff6b8a; font-weight:bold; font-size:1.2rem; }
-.route-hidden { display:none; }
+.route-hidden {
+  display: none !important;
+}
 
 .yt-hidden { position:fixed; bottom:-200px; right:-200px; width:1px; height:1px; opacity:0; pointer-events:none; }
 
