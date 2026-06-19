@@ -180,6 +180,63 @@ document.getElementById('spinWheelBtn').addEventListener('click', () => {
     document.getElementById('wheelResult').textContent = '🎉 ' + segments[winningIndex] + '!';
   }, 4100);
 });
+    // Dilim çiz
+    ctx.beginPath();
+    ctx.moveTo(center, center);
+    ctx.arc(center, center, radius, start, end);
+    ctx.fillStyle = segColors[i];
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Metin
+    ctx.save();
+    ctx.translate(center, center);
+    ctx.rotate(start + arc / 2); // dilim ortası
+
+    // Font boyutunu canvas genişliğine göre ayarla (orantılı)
+    let fontSize = Math.round(size * 0.065); // ~22px (350px) → 18px (280px)
+    ctx.font = `bold ${fontSize}px 'Poppins', sans-serif`;
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    
+    // Metni radius'in %70'i kadar dışarıya yerleştir
+    const textRadius = radius * 0.72;
+    ctx.fillText(segments[i], textRadius, 0);
+    
+    // Emoji için ayrıca biraz daha dışarıda göstermek istersen (opsiyonel)
+    // ama bu versiyonda metinle beraber yazıldığı için aynı yerde kalacak
+    ctx.restore();
+  }
+}
+
+// Pencere boyutu değişince yeniden çiz
+window.addEventListener('resize', () => {
+  resizeCanvas();
+});
+
+// İlk çizim
+resizeCanvas();
+
+let spinning = false;
+document.getElementById('spinWheelBtn').addEventListener('click', () => {
+  if (spinning) return; // zaten dönüyorsa tekrar tıklamayı engelle
+  spinning = true;
+  
+  const spin = Math.random() * 3600 + 720; // en az 2 tam tur
+  angle += spin;
+  canvas.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+  canvas.style.transform = `rotate(${angle}deg)`;
+  
+  setTimeout(() => {
+    spinning = false;
+    const normalizedAngle = (angle % 360 + 360) % 360;
+    const winningIndex = Math.floor(normalizedAngle / (360 / segments.length)) % segments.length;
+    document.getElementById('wheelResult').textContent = '🎉 ' + segments[winningIndex] + '!';
+  }, 4100);
+});
     // Dilimi çiz
     ctx.beginPath();
     ctx.moveTo(center, center);
