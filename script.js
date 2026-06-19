@@ -80,18 +80,12 @@ routeTitle.addEventListener('click', () => {
       }
     });
 
-// ── AŞK ÇARKI (20 segment, responsive, okunaklı) ─
+// ── AŞK ÇARKI (20 segment, responsive, sıfır taşma) ─
 const canvas = document.getElementById('wheelCanvas');
 const ctx = canvas.getContext('2d');
 const wheelContainer = document.querySelector('.wheel-container');
 
-function resizeCanvas() {
-  const size = wheelContainer.clientWidth;
-  canvas.width = size;
-  canvas.height = size;
-  drawWheel();
-}
-
+// Segmentler ve renkler
 const segments = [
   '💋 Öpücük', '🤗 Sarılma', '💆 Masaj', '🎬 Film',
   '🍝 Yemek', '💃 Dans', '🎁 Hediye', '🌸 Çiçek',
@@ -110,74 +104,70 @@ const segColors = [
 
 let angle = 0;
 
+function resizeCanvas() {
+  const size = wheelContainer.clientWidth;
+  canvas.width = size;
+  canvas.height = size;
+  drawWheel();
+}
+
 function drawWheel() {
   const size = canvas.width;
   const center = size / 2;
-  const radius = size * 0.45;    // Dilimler yarıçapın %90'ını kaplasın
+  const radius = size * 0.42;         // Biraz içeride, taşmayı önler
   const len = segments.length;
   const arc = (2 * Math.PI) / len;
 
   ctx.clearRect(0, 0, size, size);
-  
+
   for (let i = 0; i < len; i++) {
     const start = i * arc;
     const end = start + arc;
 
-    // Dilim çiz
+    // Dilim
     ctx.beginPath();
     ctx.moveTo(center, center);
     ctx.arc(center, center, radius, start, end);
     ctx.fillStyle = segColors[i];
     ctx.fill();
     ctx.strokeStyle = 'white';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     ctx.stroke();
 
     // Metin
     ctx.save();
     ctx.translate(center, center);
-    ctx.rotate(start + arc / 2); // dilim ortası
+    ctx.rotate(start + arc / 2);
 
-    // Font boyutunu canvas genişliğine göre ayarla (orantılı)
-    let fontSize = Math.round(size * 0.065); // ~22px (350px) → 18px (280px)
+    // Dinamik font: radius’a göre küçük ama okunaklı
+    let fontSize = Math.max(10, Math.floor(radius * 0.22));
     ctx.font = `bold ${fontSize}px 'Poppins', sans-serif`;
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    
-    // Metni radius'in %70'i kadar dışarıya yerleştir
-    const textRadius = radius * 0.72;
+
+    // Metni dış kenara yakın ama tam sınırda değil
+    const textRadius = radius * 0.75;
     ctx.fillText(segments[i], textRadius, 0);
-    
-    // Emoji için ayrıca biraz daha dışarıda göstermek istersen (opsiyonel)
-    // ama bu versiyonda metinle beraber yazıldığı için aynı yerde kalacak
     ctx.restore();
   }
 }
 
-// Pencere boyutu değişince yeniden çiz
-window.addEventListener('resize', () => {
-  resizeCanvas();
-});
-
-// İlk çizim
+// İlk çizim ve pencere boyutu değişiminde yeniden çiz
 resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-let spinning = false;
+// Çevirme butonu
 document.getElementById('spinWheelBtn').addEventListener('click', () => {
-  if (spinning) return; // zaten dönüyorsa tekrar tıklamayı engelle
-  spinning = true;
-  
-  const spin = Math.random() * 3600 + 720; // en az 2 tam tur
+  const spin = Math.random() * 3600 + 720;
   angle += spin;
-  canvas.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+  canvas.style.transition = 'transform 4s cubic-bezier(0.17,0.67,0.12,0.99)';
   canvas.style.transform = `rotate(${angle}deg)`;
-  
+
   setTimeout(() => {
-    spinning = false;
-    const normalizedAngle = (angle % 360 + 360) % 360;
-    const winningIndex = Math.floor(normalizedAngle / (360 / segments.length)) % segments.length;
-    document.getElementById('wheelResult').textContent = '🎉 ' + segments[winningIndex] + '!';
+    const norm = (angle % 360 + 360) % 360;
+    const idx = Math.floor(norm / (360 / segments.length)) % segments.length;
+    document.getElementById('wheelResult').textContent = '🎉 ' + segments[idx] + '!';
   }, 4100);
 });
     // Dilim çiz
