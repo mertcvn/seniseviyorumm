@@ -487,7 +487,6 @@
       document.body.appendChild(popup);
       setTimeout(() => { if (popup.parentNode) popup.remove(); }, 4000);
     });
-
     console.log('💖 Aşk Rotası - tüm özellikler aktif!');
   }
 })();
