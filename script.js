@@ -75,8 +75,21 @@
     // ── AŞK ÇARKI ─────────────────────
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
-    const segments = ['💋 Öpücük', '🤗 Sarılma', '💆 Masaj', '🎬 Film', '🍝 Yemek', '💃 Dans', '🎁 Hediye', '🌸 Çiçek'];
-    const segColors = ['#ff6b8a','#ff9a9e','#ffb6c1','#ff3d6f','#e84a6e','#c1121f','#ff7f7f','#ff4d6d'];
+    const segments = [
+  '💋 Öpücük', '🤗 Sarılma', '💆 Masaj', '🎬 Film',
+  '🍝 Yemek', '💃 Dans', '🎁 Hediye', '🌸 Çiçek',
+  '📸 Fotoğraf', '👀 Göz Teması', '🎤 Şarkı', '😂 Komiklik',
+  '🍦 Dondurma', '🌙 Gece Yürüyüşü', '🎨 Resim Yap', '✍️ Şiir',
+  '💌 Mektup', '🍕 Pizza', '🎲 Oyun', '💭 Hayal Kur'
+];
+
+const segColors = [
+  '#ff6b8a', '#ff9a9e', '#ffb6c1', '#ff3d6f',
+  '#e84a6e', '#c1121f', '#ff7f7f', '#ff4d6d',
+  '#ff8c94', '#ffaaa5', '#ff6f61', '#e63946',
+  '#ffb3ba', '#ff8b94', '#c71585', '#ff69b4',
+  '#ff1493', '#db7093', '#f06292', '#ad1457'
+];
     let angle = 0;
     function drawWheel() {
       const len = segments.length;
