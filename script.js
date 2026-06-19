@@ -167,6 +167,21 @@ document.getElementById('spinWheelBtn').addEventListener('click', () => {
     document.getElementById('wheelResult').textContent = '🎉 ' + segments[idx] + '!';
   }, 4100);
 });
+// İlk çizim ve pencere boyutu değişince yeniden çiz
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+document.getElementById('spinWheelBtn').addEventListener('click', () => {
+  const spin = Math.random() * 3600 + 720;
+  angle += spin;
+  canvas.style.transition = 'transform 4s cubic-bezier(0.17,0.67,0.12,0.99)';
+  canvas.style.transform = `rotate(${angle}deg)`;
+  setTimeout(() => {
+    const norm = (angle % 360 + 360) % 360;
+    const idx = Math.floor(norm / (360 / segments.length)) % segments.length;
+    document.getElementById('wheelResult').textContent = '🎉 ' + segments[idx] + '!';
+  }, 4100);
+});
     // ── AKTİVİTE LİSTELERİ (100'er adet) ─
     const romantic = [
       "Mum ışığında evde akşam yemeği","Birlikte gün batımı izleyin","El ele yıldızları seyredin",
