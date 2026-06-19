@@ -80,7 +80,7 @@ routeTitle.addEventListener('click', () => {
       }
     });
 
-    // ── AŞK ÇARKI (20 segment, responsive boyut) ─
+// ── AŞK ÇARKI (20 segment, mobil uyumlu, okunaklı) ─
 const canvas = document.getElementById('wheelCanvas');
 const ctx = canvas.getContext('2d');
 const wheelContainer = document.querySelector('.wheel-container');
@@ -95,9 +95,9 @@ function resizeCanvas() {
 const segments = [
   '💋 Öpücük', '🤗 Sarılma', '💆 Masaj', '🎬 Film',
   '🍝 Yemek', '💃 Dans', '🎁 Hediye', '🌸 Çiçek',
-  '📸 Fotoğraf', '👀 Göz Teması', '🎤 Şarkı', '😂 Komiklik',
-  '🍦 Dondurma', '🌙 Gece Yürüyüşü', '🎨 Resim Yap', '✍️ Şiir',
-  '💌 Mektup', '🍕 Pizza', '🎲 Oyun', '💭 Hayal Kur'
+  '📸 Foto', '👀 Göz', '🎤 Şarkı', '😂 Komik',
+  '🍦 Dondurma', '🌙 Gece', '🎨 Resim', '✍️ Şiir',
+  '💌 Mektup', '🍕 Pizza', '🎲 Oyun', '💭 Hayal'
 ];
 
 const segColors = [
@@ -120,22 +120,34 @@ function drawWheel() {
   ctx.clearRect(0, 0, size, size);
   for (let i = 0; i < len; i++) {
     const start = i * arc;
+    const end = start + arc;
+
+    // Dilimi çiz
     ctx.beginPath();
     ctx.moveTo(center, center);
-    ctx.arc(center, center, radius, start, start + arc);
+    ctx.arc(center, center, radius, start, end);
     ctx.fillStyle = segColors[i];
     ctx.fill();
     ctx.strokeStyle = 'white';
     ctx.lineWidth = 2;
     ctx.stroke();
 
+    // Metni ekle
     ctx.save();
     ctx.translate(center, center);
-    ctx.rotate(start + arc / 2);
+    ctx.rotate(start + arc / 2); // dilimin ortası
+
+    // Font boyutunu dinamik yap
+    let fontSize = Math.max(10, radius * 0.16);
+    ctx.font = `bold ${fontSize}px 'Poppins', sans-serif`;
     ctx.fillStyle = 'white';
-    ctx.font = `bold ${Math.floor(radius * 0.2)}px Poppins`;
     ctx.textAlign = 'center';
-    ctx.fillText(segments[i], radius * 0.7, 5);
+    ctx.textBaseline = 'middle';
+
+    // Metni biraz içeride göster (radius'in %65'i kadar uzaklıkta)
+    const textRadius = radius * 0.68;
+    ctx.fillText(segments[i], textRadius, 0);
+
     ctx.restore();
   }
 }
