@@ -192,15 +192,66 @@ body.night-mode .night-mode-toggle { background:rgba(255,255,255,0.05); }
 .extra-photos { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; justify-content:center; }
 .extra-photos img { width:80px; height:80px; object-fit:cover; border-radius:12px; border:2px solid rgba(255,182,193,0.5); }
 
-/* çark */
-.wheel-container { width:300px; height:300px; margin:0 auto 15px; }
-.wheel-spin-btn { background:#ff3d6f; border:none; color:white; font-size:1.2rem; padding:12px 30px; border-radius:50px; cursor:pointer; font-weight:bold; letter-spacing:1px; box-shadow:0 6px 20px rgba(255,61,111,0.5); transition:0.3s; }
-.wheel-spin-btn:hover { background:#ff5080; box-shadow:0 10px 30px rgba(255,61,111,0.8); }
-.wheel-result { min-height:30px; font-size:1.2rem; font-weight:600; color:#ffb6c1; margin-top:10px; }
+/* Çark konteyneri */
+.wheel-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 15px;
+}
 
-#secretMessageBtn:hover { transform:scale(1.3); filter:drop-shadow(0 0 15px #ff6b8a); }
-.secret-popup { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(255,107,138,0.95); color:white; padding:30px; border-radius:20px; z-index:99999; font-family:'Dancing Script',cursive; font-size:1.8rem; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.5); animation:popIn 0.5s ease; cursor:pointer; max-width:300px; }
-@keyframes popIn { from{transform:translate(-50%,-50%) scale(0.3); opacity:0} to{transform:translate(-50%,-50%) scale(1); opacity:1} }
+/* Ok işareti */
+.wheel-pointer {
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  z-index: 10;
+  position: relative;
+  top: 10px;
+  animation: pointerBounce 1s infinite;
+}
+@keyframes pointerBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Canvas responsive */
+#wheelCanvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Çevir butonu */
+.wheel-spin-btn {
+  background: #ff3d6f;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 20px rgba(255, 61, 111, 0.5);
+  transition: 0.3s;
+  margin-top: 5px;
+}
+.wheel-spin-btn:hover {
+  background: #ff5080;
+  box-shadow: 0 10px 30px rgba(255, 61, 111, 0.8);
+}
+
+/* Mobilde çarkı küçült */
+@media (max-width: 600px) {
+  .wheel-container {
+    width: 250px;
+    height: 250px;
+  }
+  .wheel-pointer {
+    font-size: 1.6rem;
+  }
+}
 
 @media (max-width:700px) {
     .cards-row { grid-template-columns:1fr; }
