@@ -113,7 +113,7 @@
         ctx.save();
         ctx.translate(center, center);
         ctx.rotate(start + arc / 2);
-        let fontSize = Math.max(10, Math.floor(radius * 0.22));
+        let fontSize = Math.max(5, Math.floor(radius * 0.11));
         ctx.font = `bold ${fontSize}px 'Poppins', sans-serif`;
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
